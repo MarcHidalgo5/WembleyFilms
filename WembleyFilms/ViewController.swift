@@ -13,7 +13,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
+    
+    override func loadView() {
+        super.loadView()
+        view = UIView()
+        view.backgroundColor = .red
+    }
 }
 
