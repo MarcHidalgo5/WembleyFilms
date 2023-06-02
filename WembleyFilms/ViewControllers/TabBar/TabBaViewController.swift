@@ -8,25 +8,19 @@ class TabBarController: UITabBarController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        let map: (UIViewController, UITabBarItem) = (
-            UIViewController(),
-            UITabBarItem(title: "tabbar-controller-map-title", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: UIImage(systemName: "mappin.and.ellipse")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
+        let filmsList: (UIViewController, UITabBarItem) = (
+            ListViewController(),
+            UITabBarItem(title: "Films", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         )
         
-        let uploadContent: (UIViewController, UITabBarItem) = (
+        let favouritesFilms: (UIViewController, UITabBarItem) = (
             UIViewController(),
-            UITabBarItem(title: "tabbar-controller-add-title", image: UIImage(systemName: "plus"), selectedImage: UIImage(systemName: "plus")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
-        )
-
-        let profile: (UIViewController, UITabBarItem) = (
-            UIViewController(),
-            UITabBarItem(title: "tabbar-controller-profile-title", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
+            UITabBarItem(title: "Favourites", image: UIImage(systemName: "list.star"), selectedImage: UIImage(systemName: "list.star")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         )
         
         let viewControllers: [UIViewController] = [
-            navigationController(with: map),
-            navigationController(with: uploadContent),
-            navigationController(with: profile),
+            navigationController(with: filmsList),
+            navigationController(with: favouritesFilms)
         ]
         self.setViewControllers(viewControllers, animated: true)
     }
