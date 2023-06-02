@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         tabBar.backgroundColor = .white
         
-        //Lines:
+        //Lines: add line to the top of tabbar
         let topline = CALayer()
         topline.frame = CGRect(x: 0, y: 0, width: self.tabBar.frame.width, height: 1)
         topline.backgroundColor = UIColor.gray.withAlphaComponent(0.3).cgColor

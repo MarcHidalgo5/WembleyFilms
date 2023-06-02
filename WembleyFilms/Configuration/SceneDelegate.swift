@@ -53,6 +53,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+//MARK: StartViewControllerDelegate
+
 extension SceneDelegate: StartViewControllerDelegate {
     func didFinishStart() {
         self.startPresentationIsFinish = true

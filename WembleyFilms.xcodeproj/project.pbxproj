@@ -18,6 +18,8 @@
 		1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */; };
 		1ACC4AC62A2A593500BCA05A /* ListViewControllerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC52A2A593500BCA05A /* ListViewControllerViews.swift */; };
 		1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */; };
+		1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */; };
+		1ACC4AD32A2A693500BCA05A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD22A2A693500BCA05A /* World.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListViewController.swift; sourceTree = "<group>"; };
 		1ACC4AC52A2A593500BCA05A /* ListViewControllerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerViews.swift; sourceTree = "<group>"; };
 		1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsAPIClient.swift; sourceTree = "<group>"; };
+		1ACC4AD22A2A693500BCA05A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		1ACC4A972A28F33D00BCA05A /* WembleyFilms */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4ACF2A2A68A300BCA05A /* Network */,
 				1ACC4AC72A2A5F3A00BCA05A /* DataSource */,
 				1ACC4AB12A28FBE500BCA05A /* Assets */,
 				1ACC4AB02A28FB9900BCA05A /* ViewControllers */,
@@ -82,6 +87,7 @@
 				1ACC4A982A28F33D00BCA05A /* AppDelegate.swift */,
 				1ACC4A9A2A28F33D00BCA05A /* SceneDelegate.swift */,
 				1ACC4ABF2A2A32E000BCA05A /* AppState.swift */,
+				1ACC4AD22A2A693500BCA05A /* World.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -170,6 +176,14 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		1ACC4ACF2A2A68A300BCA05A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +261,8 @@
 				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,
 				1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */,
 				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
+				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
+				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
 				1ACC4AC62A2A593500BCA05A /* ListViewControllerViews.swift in Sources */,
 			);

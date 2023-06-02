@@ -3,3 +3,18 @@
 //
 
 import Foundation
+
+protocol ListDataSourceType {
+    func fetchFilmList() async throws
+}
+
+class ListDataSource: ListDataSourceType {
+    
+    init(apiClient: WembleyFilmsAPIClient) {
+        self.apiClient = apiClient
+    }
+    
+    let apiClient: WembleyFilmsAPIClient
+    
+    func fetchFilmList() async throws { }
+}

@@ -43,6 +43,7 @@ class ImageCell: UICollectionViewCell {
             self.configuration = configuration
             super.init(frame: .zero)
             addSubview(imageView)
+            imageView.backgroundColor = .red
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: topAnchor),
                 imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
