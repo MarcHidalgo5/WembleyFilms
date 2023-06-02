@@ -5,7 +5,7 @@
 import Foundation
 
 /// What state the app is in
-enum AppState: Equatable {
+enum AppState {
     /// In this state you are on the main screen
     case start
     ///In this state you are inside the normal app

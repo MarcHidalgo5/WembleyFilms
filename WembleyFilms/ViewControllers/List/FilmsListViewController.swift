@@ -74,13 +74,14 @@ extension ListViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let spacing = NSCollectionLayoutSpacing.fixed(Constants.Spacing)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.5))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
-        return UICollectionViewCompositionalLayout { (_, _) -> NSCollectionLayoutSection? in
-            let sectionLayout = NSCollectionLayoutSection(group: group)
-            sectionLayout.interGroupSpacing = Constants.Spacing
-            sectionLayout.contentInsets = NSDirectionalEdgeInsets(top: Constants.Spacing, leading: Constants.Spacing, bottom: 0, trailing: Constants.Spacing)
-            return sectionLayout
-        }
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.interItemSpacing = spacing
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: Constants.MediumSpacing, leading: Constants.MediumSpacing, bottom: Constants.MediumSpacing, trailing: Constants.MediumSpacing)
+        section.interGroupSpacing = Constants.MediumSpacing / 2
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 }
 

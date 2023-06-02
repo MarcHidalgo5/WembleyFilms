@@ -44,6 +44,12 @@ class ImageCell: UICollectionViewCell {
             super.init(frame: .zero)
             addSubview(imageView)
             imageView.backgroundColor = .red
+            
+            layer.cornerRadius = 12
+            layer.masksToBounds = true
+            layer.cornerCurve = .continuous
+            clipsToBounds = true
+            
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: topAnchor),
                 imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -54,6 +60,13 @@ class ImageCell: UICollectionViewCell {
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
+        }
+        
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            
+            // Adjust the size of the image to match the size of the cell
+            imageView.frame = bounds
         }
         
         func configureFor(configuration: Configuration) {
