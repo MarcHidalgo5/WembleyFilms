@@ -6,16 +6,25 @@ import UIKit
 
 class ListViewController: UIViewController, UICollectionViewDelegate {
     
-    enum Constants {
+    init() {
+        self.dataSource = Current.listDataSourceFactory()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private  enum Constants {
         static let Spacing: CGFloat = 16
         static let MediumSpacing: CGFloat = 12
     }
     
-    enum Section {
+    private enum Section {
         case main
     }
     
-    enum ItemID: Hashable {
+    private enum ItemID: Hashable {
         case film(ImageCell.Configuration.ID)
     }
     
@@ -23,15 +32,32 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         let films: [ImageCell.Configuration]
     }
     
+    private let refreshControl = UIRefreshControl()
     private var collectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Section, ItemID>!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ItemID>!
+    
     private var viewModel: VM!
+    private let dataSource: ListDataSourceType
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         configureDataSource()
-        applySnapshot()
+        configurePullToRefresh()
+        fetchData()
+    }
+    
+    //MARK: Private
+    
+    private func fetchData() {
+        Task { @MainActor in
+            do {
+                let vm = try await dataSource.fetchFilmList()
+                await configureFor(viewModel: vm)
+            } catch {
+                
+            }
+        }
     }
     
     private func configureCollectionView() {
@@ -41,12 +67,41 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         view.addSubview(collectionView)
     }
     
+    private func configurePullToRefresh() {
+        refreshControl.tintColor = .black
+        refreshControl.addTarget(self, action: #selector(handlePullToRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    
+    @objc private func handlePullToRefresh() {
+        Task{ @MainActor in
+            var snapshot = diffableDataSource.snapshot()
+            await handlePullToRefresh(snapshot: &snapshot)
+            await diffableDataSource.apply(snapshot, animatingDifferences: true)
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    private func handlePullToRefresh(snapshot: inout NSDiffableDataSourceSnapshot<Section, ItemID>) async {
+        do {
+            let vm = try await dataSource.fetchFilmList()
+            self.viewModel = vm
+            snapshot.deleteAllItems()
+            snapshot.appendSections([.main])
+            self.viewModel.films.forEach { film in
+                snapshot.appendItems([.film(film.id)])
+            }
+        } catch {
+//            self.showErrorAlert("walkthrough-error-message".localizedInMainBundle, error: error)
+        }
+    }
+    
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, ImageCell.Configuration> { (cell, indexPath, itemIdentifier) in
             cell.contentConfiguration = itemIdentifier
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, ItemID>(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
+        diffableDataSource = UICollectionViewDiffableDataSource<Section, ItemID>(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
             switch itemIdentifier {
             case .film(let id):
                 guard let config = self.viewModel.films.filter({ $0.id == id }).first else { fatalError() }
@@ -55,21 +110,15 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
-    private func applySnapshot() {
-        var snapshot = dataSource.snapshot()
+    private func configureFor(viewModel: VM) async  {
+        self.viewModel = viewModel
+        var snapshot = diffableDataSource.snapshot()
+        snapshot.deleteAllItems()
         snapshot.appendSections([.main])
-        
-        self.viewModel = .init(films: [
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!)
-        ])
         self.viewModel.films.forEach { film in
             snapshot.appendItems([.film(film.id)])
         }
-        dataSource.apply(snapshot, animatingDifferences: true)
+        await diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 extension ListViewController {
