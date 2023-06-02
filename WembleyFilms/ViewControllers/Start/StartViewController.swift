@@ -36,7 +36,7 @@ class StartViewController: UIViewController {
         
         let startButton: UIButton = {
             var configuration = UIButton.Configuration.filled()
-            configuration.attributedTitle = AttributedString("Empezar", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: .bold)]))
+            configuration.attributedTitle = AttributedString("Start", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: .bold)]))
             configuration.baseBackgroundColor = .black
             configuration.buttonSize = .large
             return .init(configuration: configuration, primaryAction: UIAction(handler: { [weak self] _ in

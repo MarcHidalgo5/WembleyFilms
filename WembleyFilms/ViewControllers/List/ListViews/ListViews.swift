@@ -47,8 +47,6 @@ class ImageCell: UICollectionViewCell {
             
             layer.cornerRadius = 12
             layer.masksToBounds = true
-            layer.cornerCurve = .continuous
-            clipsToBounds = true
             
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -64,7 +62,6 @@ class ImageCell: UICollectionViewCell {
         
         override func layoutSubviews() {
             super.layoutSubviews()
-            
             // Adjust the size of the image to match the size of the cell
             imageView.frame = bounds
         }

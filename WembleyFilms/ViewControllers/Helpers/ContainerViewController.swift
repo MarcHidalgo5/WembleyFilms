@@ -23,28 +23,20 @@ class ContainerViewController: UIViewController {
         containedViewController.didMove(toParent: self)
     }
 
-    func updateContainedViewController(_ newVC: UIViewController, animated: Bool = true) {
+    func updateContainedViewController(_ newVC: UIViewController) {
         addChild(newVC)
         newVC.view.frame = view.bounds
         view.addSubview(newVC.view)
         newVC.didMove(toParent: self)
-        
-        if (animated) {
-            newVC.view.alpha = 0
-            UIView.animate(withDuration: 0.3) {
-                self.containedViewController.view.alpha = 0
-                newVC.view.alpha = 1
-            } completion: { _ in
-                self.containedViewController.willMove(toParent: nil)
-                self.containedViewController.view.removeFromSuperview()
-                self.containedViewController.removeFromParent()
-                self.containedViewController = newVC
-            }
-        } else {
-            containedViewController.willMove(toParent: nil)
-            containedViewController.view.removeFromSuperview()
-            containedViewController.removeFromParent()
-            containedViewController = newVC
+        newVC.view.alpha = 0
+        UIView.animate(withDuration: 0.3) {
+            self.containedViewController.view.alpha = 0
+            newVC.view.alpha = 1
+        } completion: { _ in
+            self.containedViewController.willMove(toParent: nil)
+            self.containedViewController.view.removeFromSuperview()
+            self.containedViewController.removeFromParent()
+            self.containedViewController = newVC
         }
     }
 }

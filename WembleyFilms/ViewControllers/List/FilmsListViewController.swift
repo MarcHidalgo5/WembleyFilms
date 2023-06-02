@@ -19,8 +19,13 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         case film(ImageCell.Configuration.ID)
     }
     
-    var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, ItemID>!
+    struct VM {
+        let films: [ImageCell.Configuration]
+    }
+    
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, ItemID>!
+    private var viewModel: VM!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: Self.PhotosLayout)
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: Self.FilmsLayout)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .white
         view.addSubview(collectionView)
@@ -44,7 +49,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         dataSource = UICollectionViewDiffableDataSource<Section, ItemID>(collectionView: collectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
             switch itemIdentifier {
             case .film(let id):
-                let config = ImageCell.Configuration(id: id, image: UIImage(systemName: "pencil")!)
+                guard let config = self.viewModel.films.filter({ $0.id == id }).first else { fatalError() }
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: config)
             }
         }
@@ -54,22 +59,22 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         var snapshot = dataSource.snapshot()
         snapshot.appendSections([.main])
         
-        let ids = [
-            UUID().uuidString,
-            UUID().uuidString,
-            UUID().uuidString,
-            UUID().uuidString,
-            UUID().uuidString,
-        ]
-        ids.forEach { id in
-            snapshot.appendItems([.film(id)])
+        self.viewModel = .init(films: [
+            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
+            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
+            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
+            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
+            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!)
+        ])
+        self.viewModel.films.forEach { film in
+            snapshot.appendItems([.film(film.id)])
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 extension ListViewController {
     
-    private static var PhotosLayout: UICollectionViewLayout {
+    private static var FilmsLayout: UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalWidth(0.5))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let spacing = NSCollectionLayoutSpacing.fixed(Constants.Spacing)

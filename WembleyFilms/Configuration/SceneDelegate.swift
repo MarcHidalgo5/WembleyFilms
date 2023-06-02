@@ -37,10 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    private func updateContainedViewController(animated: Bool = true) {
-        /// Make sure nothing is on top of the rootVC before updating it
-        rootViewController.presentedViewController?.dismiss(animated: false, completion: nil)
-        rootViewController.updateContainedViewController(createViewController(forAppState: currentAppState), animated: animated)
+    private func updateContainedViewController() {
+        rootViewController.updateContainedViewController(createViewController(forAppState: currentAppState))
         
     }
     
