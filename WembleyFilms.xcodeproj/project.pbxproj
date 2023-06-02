@@ -9,19 +9,35 @@
 /* Begin PBXBuildFile section */
 		1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4A982A28F33D00BCA05A /* AppDelegate.swift */; };
 		1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4A9A2A28F33D00BCA05A /* SceneDelegate.swift */; };
-		1ACC4A9D2A28F33D00BCA05A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4A9C2A28F33D00BCA05A /* ViewController.swift */; };
 		1ACC4AA22A28F33E00BCA05A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC4AA12A28F33E00BCA05A /* Assets.xcassets */; };
 		1ACC4AA52A28F33E00BCA05A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACC4AA32A28F33E00BCA05A /* LaunchScreen.storyboard */; };
+		1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AB22A294D7500BCA05A /* TabBaViewController.swift */; };
+		1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AB52A2A290800BCA05A /* ContainerViewController.swift */; };
+		1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ABC2A2A315600BCA05A /* StartViewController.swift */; };
+		1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ABF2A2A32E000BCA05A /* AppState.swift */; };
+		1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */; };
+		1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC52A2A593500BCA05A /* ListViews.swift */; };
+		1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */; };
+		1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */; };
+		1ACC4AD32A2A693500BCA05A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD22A2A693500BCA05A /* World.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WembleyFilms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACC4A982A28F33D00BCA05A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACC4A9A2A28F33D00BCA05A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1ACC4A9C2A28F33D00BCA05A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1ACC4AA12A28F33E00BCA05A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ACC4AA42A28F33E00BCA05A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ACC4AA62A28F33E00BCA05A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1ACC4AB22A294D7500BCA05A /* TabBaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBaViewController.swift; sourceTree = "<group>"; };
+		1ACC4AB52A2A290800BCA05A /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		1ACC4ABC2A2A315600BCA05A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		1ACC4ABF2A2A32E000BCA05A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListViewController.swift; sourceTree = "<group>"; };
+		1ACC4AC52A2A593500BCA05A /* ListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViews.swift; sourceTree = "<group>"; };
+		1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsAPIClient.swift; sourceTree = "<group>"; };
+		1ACC4AD22A2A693500BCA05A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +70,118 @@
 		1ACC4A972A28F33D00BCA05A /* WembleyFilms */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4A982A28F33D00BCA05A /* AppDelegate.swift */,
-				1ACC4A9A2A28F33D00BCA05A /* SceneDelegate.swift */,
-				1ACC4A9C2A28F33D00BCA05A /* ViewController.swift */,
-				1ACC4AA12A28F33E00BCA05A /* Assets.xcassets */,
+				1ACC4ACF2A2A68A300BCA05A /* Network */,
+				1ACC4AC72A2A5F3A00BCA05A /* DataSource */,
+				1ACC4AB12A28FBE500BCA05A /* Assets */,
+				1ACC4AB02A28FB9900BCA05A /* ViewControllers */,
+				1ACC4AAF2A28FB8000BCA05A /* Configuration */,
 				1ACC4AA32A28F33E00BCA05A /* LaunchScreen.storyboard */,
-				1ACC4AA62A28F33E00BCA05A /* Info.plist */,
 			);
 			path = WembleyFilms;
+			sourceTree = "<group>";
+		};
+		1ACC4AAF2A28FB8000BCA05A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AA62A28F33E00BCA05A /* Info.plist */,
+				1ACC4A982A28F33D00BCA05A /* AppDelegate.swift */,
+				1ACC4A9A2A28F33D00BCA05A /* SceneDelegate.swift */,
+				1ACC4ABF2A2A32E000BCA05A /* AppState.swift */,
+				1ACC4AD22A2A693500BCA05A /* World.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		1ACC4AB02A28FB9900BCA05A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4ABE2A2A318100BCA05A /* Favourite */,
+				1ACC4ABB2A2A30EA00BCA05A /* Details */,
+				1ACC4ABA2A2A30CE00BCA05A /* List */,
+				1ACC4AB92A2A2FEB00BCA05A /* Start */,
+				1ACC4AB82A2A2FD900BCA05A /* TabBar */,
+				1ACC4AB72A2A2D3D00BCA05A /* Helpers */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1ACC4AB12A28FBE500BCA05A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AA12A28F33E00BCA05A /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		1ACC4AB72A2A2D3D00BCA05A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AB52A2A290800BCA05A /* ContainerViewController.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1ACC4AB82A2A2FD900BCA05A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AB22A294D7500BCA05A /* TabBaViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		1ACC4AB92A2A2FEB00BCA05A /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4ABC2A2A315600BCA05A /* StartViewController.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		1ACC4ABA2A2A30CE00BCA05A /* List */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AC42A2A591E00BCA05A /* ListViews */,
+				1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		1ACC4ABB2A2A30EA00BCA05A /* Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		1ACC4ABE2A2A318100BCA05A /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		1ACC4AC42A2A591E00BCA05A /* ListViews */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AC52A2A593500BCA05A /* ListViews.swift */,
+			);
+			path = ListViews;
+			sourceTree = "<group>";
+		};
+		1ACC4AC72A2A5F3A00BCA05A /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		1ACC4ACF2A2A68A300BCA05A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +254,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ACC4A9D2A28F33D00BCA05A /* ViewController.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
 				1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */,
+				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
+				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,
+				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,
+				1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */,
+				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
+				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
+				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
+				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
+				1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WembleyFilms/Info.plist;
+				INFOPLIST_FILE = WembleyFilms/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -303,7 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = WembleyFilms/Info.plist;
+				INFOPLIST_FILE = WembleyFilms/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
