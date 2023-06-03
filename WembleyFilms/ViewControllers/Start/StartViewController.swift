@@ -3,6 +3,9 @@
 //
 
 import UIKit
+import AuthenticationServices
+
+protocol ASWebAuthenticationViewController: UIViewController, ASWebAuthenticationPresentationContextProviding { }
 
 protocol StartViewControllerDelegate: AnyObject {
     func didFinishStart()
@@ -12,6 +15,7 @@ class StartViewController: UIViewController {
     
     init(delegate: StartViewControllerDelegate) {
         self.delegate = delegate
+        self.dataSource = Current.authenticationDataSource
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -19,6 +23,7 @@ class StartViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let dataSource: AuthenticationDataSourceType
     private weak var delegate: StartViewControllerDelegate?
     
     private let logoImageView: UIImageView = {
@@ -40,7 +45,7 @@ class StartViewController: UIViewController {
             configuration.baseBackgroundColor = .black
             configuration.buttonSize = .large
             return .init(configuration: configuration, primaryAction: UIAction(handler: { [weak self] _ in
-                self?.delegate?.didFinishStart()
+                self?.startLogin()
             }))
         }()
         
@@ -63,4 +68,18 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    private func startLogin() {
+        Task { @MainActor in
+            try await dataSource.login(fromVC: self)
+        }
+    }
+}
+
+extension StartViewController: ASWebAuthenticationViewController {
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return view.window!
+    }
+    
+    
 }
