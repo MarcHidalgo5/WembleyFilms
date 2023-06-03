@@ -7,7 +7,6 @@ import Foundation
 enum AuthAPI: Endpoint {
     case createToken
     case createSession(requestToken: String)
-    case authorizeRequestToken(requestToken: String)
 
     var path: String {
         switch self {
@@ -15,14 +14,12 @@ enum AuthAPI: Endpoint {
             return "/authentication/token/new"
         case .createSession:
             return "authentication/session/new"
-        case .authorizeRequestToken(let requestToken):
-            return "/authenticate/\(requestToken)?redirect_to=wembleyFilms://auth"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .createToken, .authorizeRequestToken:
+        case .createToken:
             return .GET
         case .createSession:
             return .POST
@@ -35,9 +32,6 @@ enum AuthAPI: Endpoint {
             return [:]
         case .createSession(let requestToken):
             return ["request_token": requestToken]
-        case .authorizeRequestToken:
-            return [:]
-            return ["redirect_to": "wembleyFilms://auth"]
         }
     }
 }

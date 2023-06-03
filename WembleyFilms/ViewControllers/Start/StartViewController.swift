@@ -71,8 +71,13 @@ class StartViewController: UIViewController {
     
     private func startLogin() {
         Task { @MainActor in
-            try await dataSource.login(fromVC: self)
-            self.delegate?.didFinishStart()
+            do {
+                try await dataSource.login(fromVC: self)
+                self.delegate?.didFinishStart()
+            } catch {
+                showErrorAlert("Failed to login", error: error)
+            }
+            
         }
     }
 }

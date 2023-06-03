@@ -31,8 +31,7 @@ public enum HTTPMethod: String {
 
 extension Endpoint {
     var httpHeaderFields: [String: String]? {
-        return ["Accept": "application/json",
-                "Content-Type": "application/json",
+        return ["accept": "application/json",
                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzZkOGNjYzQyYjE0MjI2ZGZmZDJhNjEwODdmZTM0NiIsInN1YiI6IjY0Nzg5NjgzMGUyOWEyMDEzM2MyM2Q1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bRJKiWIidwYzRREft1XWBRVcSSmfrdvpJk0_fpzJlKc"]
     }
 }

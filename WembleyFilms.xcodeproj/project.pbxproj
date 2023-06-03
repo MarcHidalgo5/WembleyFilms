@@ -34,6 +34,7 @@
 		1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B132A2BC04800BCA05A /* UserAPI.swift */; };
 		1ACC4B162A2BC07100BCA05A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B152A2BC07100BCA05A /* User.swift */; };
 		1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */; };
+		1ACC4B1B2A2BE86400BCA05A /* FilmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		1ACC4B132A2BC04800BCA05A /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		1ACC4B152A2BC07100BCA05A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStorage.swift; sourceTree = "<group>"; };
+		1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,7 +214,9 @@
 		1ACC4ACF2A2A68A300BCA05A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4B092A2BB75D00BCA05A /* WembleyFilms */,
+				1ACC4B0A2A2BB77A00BCA05A /* WembleyFilmsAPI.swift */,
+				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
+				1ACC4B0E2A2BBF9A00BCA05A /* API */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -247,21 +251,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		1ACC4B092A2BB75D00BCA05A /* WembleyFilms */ = {
-			isa = PBXGroup;
-			children = (
-				1ACC4B0E2A2BBF9A00BCA05A /* API */,
-				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
-				1ACC4B0A2A2BB77A00BCA05A /* WembleyFilmsAPI.swift */,
-			);
-			path = WembleyFilms;
-			sourceTree = "<group>";
-		};
 		1ACC4B0E2A2BBF9A00BCA05A /* API */ = {
 			isa = PBXGroup;
 			children = (
 				1ACC4B0F2A2BBFB000BCA05A /* AuthAPI.swift */,
 				1ACC4B132A2BC04800BCA05A /* UserAPI.swift */,
+				1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -348,6 +343,7 @@
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
 				1ACC4B0D2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift in Sources */,
 				1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */,
+				1ACC4B1B2A2BE86400BCA05A /* FilmAPI.swift in Sources */,
 				1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */,
 				1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */,
 				1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */,

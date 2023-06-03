@@ -11,7 +11,6 @@ extension WembleyFilmsAPIClient {
     
     func fetch<T: Decodable>(from endpoint: Endpoint) async throws -> T {
         let request = try configureRequest(from: endpoint)
-        let session = URLSession(configuration: .default)
         let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse, handleResponse(for: httpResponse) else {
@@ -27,12 +26,6 @@ extension WembleyFilmsAPIClient {
 }
 
 private extension WembleyFilmsAPIClient {
-//    
-//    private static let Headers = [
-//        "Accept": "application/json",
-//        "Content-Type": "application/json",
-//        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzZkOGNjYzQyYjE0MjI2ZGZmZDJhNjEwODdmZTM0NiIsInN1YiI6IjY0Nzg5NjgzMGUyOWEyMDEzM2MyM2Q1ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bRJKiWIidwYzRREft1XWBRVcSSmfrdvpJk0_fpzJlKc"
-//    ]
     
     func handleResponse(for response: HTTPURLResponse?) -> Bool {
         guard let statusCode = response?.statusCode, 200...299 ~= statusCode else {

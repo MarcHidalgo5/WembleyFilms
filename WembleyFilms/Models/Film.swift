@@ -4,36 +4,49 @@
 
 import Foundation
 
-struct Film: Codable {
-    let id: String
+struct Film {
+    let id: Int
     let title: String
     let posterPath: String
     let releaseDate: String
+}
 
-    enum CodingKeys: String, CodingKey {
+extension Film: Decodable {
+
+    enum FilmCodingKeys: String, CodingKey {
         case id
-        case title
         case posterPath = "poster_path"
+        case title
         case releaseDate = "release_date"
     }
-}
 
-extension Film {
-    struct Response: Codable {
-        let page: Int
-        let results: [Film]
-        let totalResults: Int
-        let totalPages: Int
-
-        enum CodingKeys: String, CodingKey {
-            case page
-            case results
-            case totalResults = "total_results"
-            case totalPages = "total_pages"
-        }
+    init(from decoder: Decoder) throws {
+        let movieContainer = try decoder.container(keyedBy: FilmCodingKeys.self)
+        id = try movieContainer.decode(Int.self, forKey: .id)
+        posterPath = try movieContainer.decode(String.self, forKey: .posterPath)
+        title = try movieContainer.decode(String.self, forKey: .title)
+        releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
     }
 }
 
+struct FilmAPIResponse {
+    let page: Int
+    let numberOfPages: Int
+    let films: [Film]
+}
 
+extension FilmAPIResponse: Decodable {
 
+    private enum FilmAPIResponseCodingKeys: String, CodingKey {
+        case page
+        case numberOfPages = "total_pages"
+        case movies = "results"
+    }
 
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: FilmAPIResponseCodingKeys.self)
+        page = try container.decode(Int.self, forKey: .page)
+        numberOfPages = try container.decode(Int.self, forKey: .numberOfPages)
+        films = try container.decode([Film].self, forKey: .movies)
+    }
+}

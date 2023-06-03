@@ -70,7 +70,7 @@ class AuthenticationDataSource: AuthenticationDataSourceType {
     }
     
     @MainActor
-    func authenticateSession(fromVC: ASWebAuthenticationViewController, requestToken: String) async throws -> URL {
+    private func authenticateSession(fromVC: ASWebAuthenticationViewController, requestToken: String) async throws -> URL {
         let authURL = URL(string: "https://www.themoviedb.org/authenticate/\(requestToken)?redirect_to=wembleyFilms://auth")!
         let callbackURLScheme = "wembleyFilms"
         return try await withCheckedThrowingContinuation { continuation in
