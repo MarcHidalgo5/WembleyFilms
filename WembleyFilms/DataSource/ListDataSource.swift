@@ -16,13 +16,23 @@ class ListDataSource: ListDataSourceType {
     
     let apiClient: WembleyFilmsAPIClient
     
+    private var nextPage: Int = 1
+    private(set) var morePagesAreAvailable: Bool = true
+    
     func fetchFilmList() async throws -> ListViewController.VM {
-        return .init(films: [
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!),
-            .init(id:  UUID().uuidString, image: UIImage(systemName: "pencil")!)
-        ])
+        let pageResult = try await self.apiClient.fetchFilms(page: self.nextPage)
+        self.morePagesAreAvailable = {
+            pageResult.numberOfPages > self.nextPage
+        }()
+        self.nextPage += 1
+        return .init(films: pageResult.films.viewModel)
+    }
+}
+
+extension Array where Element == Film {
+    var viewModel: [ListViewController.ImageCell.Configuration] {
+        map {
+            .init(id: String($0.id), image: UIImage(systemName: "pencil")!)
+        }
     }
 }

@@ -13,11 +13,13 @@ var Current: World!
 struct World {
     
     var apiClient: WembleyFilmsAPIClient
+    var authenticationDataSource: AuthenticationDataSource
     
     var listDataSourceFactory: () -> ListDataSource
     
     init() {
         self.apiClient = WembleyFilmsAPIClient()
+        self.authenticationDataSource = AuthenticationDataSource(apiClient: apiClient)
         self.listDataSourceFactory = {
             ListDataSource(apiClient: Current.apiClient)
         }
