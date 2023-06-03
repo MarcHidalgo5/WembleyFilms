@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UICollectionViewDelegate {
+class ListViewController: UIViewController {
     
     init() {
         self.dataSource = Current.listDataSourceFactory()
@@ -27,7 +27,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     }
     
     struct VM {
-        let films: [ImageCell.Configuration]
+        var films: [ImageCell.Configuration]
     }
     
     private var activityIndicator: UIActivityIndicatorView!
@@ -37,6 +37,8 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     
     private var viewModel: VM!
     private let dataSource: ListDataSourceType
+    
+    private var isRequestingNextPage: Bool = false
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,16 +56,30 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     //MARK: Private
     
     private func fetchData() {
+        guard !isRequestingNextPage else { return }
+        isRequestingNextPage = true
         startLoading()
         Task { @MainActor in
             do {
                 let vm = try await dataSource.fetchFilmList()
                 await configureFor(viewModel: vm)
                 stopLoading()
+                self.isRequestingNextPage = false
             } catch {
                 self.showErrorAlert("Fail loading films", error: error)
                 stopLoading()
+                self.isRequestingNextPage = false
             }
+        }
+    }
+    
+    private func fetchNextPage() {
+        guard !isRequestingNextPage else { return }
+        isRequestingNextPage = true
+        Task { @MainActor in
+            let vm = try await dataSource.fetchFilmList()
+            await configureForNextPage(viewModel: vm)
+            self.isRequestingNextPage = false
         }
     }
     
@@ -111,12 +127,21 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         snapshot.deleteAllItems()
         if self.viewModel.films.isEmpty {
             snapshot.appendSections([.empty])
-            snapshot.appendItems([.emtpy])
+            snapshot.appendItems([.emtpy], toSection: .empty)
         } else {
             snapshot.appendSections([.main])
             self.viewModel.films.forEach { film in
-                snapshot.appendItems([.film(film.id)])
+                snapshot.appendItems([.film(film.id)], toSection: .main)
             }
+        }
+        await diffableDataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func configureForNextPage(viewModel: VM) async {
+        self.viewModel.films.append(contentsOf: viewModel.films)
+        var snapshot = diffableDataSource.snapshot()
+        viewModel.films.forEach { film in
+            snapshot.appendItems([.film(film.id)], toSection: .main)
         }
         await diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -124,6 +149,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = .white
+        collectionView.delegate = self
         view.addSubview(collectionView)
     }
     
@@ -179,6 +205,16 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
             }
         } catch {
             self.showErrorAlert("Fail loading films", error: error)
+        }
+    }
+}
+
+extension ListViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.size.height * 4 {
+            fetchNextPage()
         }
     }
 }

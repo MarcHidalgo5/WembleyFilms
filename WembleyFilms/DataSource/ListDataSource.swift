@@ -20,12 +20,17 @@ class ListDataSource: ListDataSourceType {
     private(set) var morePagesAreAvailable: Bool = true
     
     func fetchFilmList() async throws -> ListViewController.VM {
-        let pageResult = try await self.apiClient.fetchFilms(page: self.nextPage)
-        self.morePagesAreAvailable = {
-            pageResult.numberOfPages > self.nextPage
-        }()
-        self.nextPage += 1
-        return .init(films: pageResult.films.viewModel)
+        if morePagesAreAvailable {
+            let pageResult = try await self.apiClient.fetchFilms(page: self.nextPage)
+            self.morePagesAreAvailable = {
+                pageResult.numberOfPages > self.nextPage
+            }()
+            print(nextPage)
+            self.nextPage += 1
+            return .init(films: pageResult.films.viewModel)
+        } else {
+            return .init(films: [])
+        }
     }
 }
 
