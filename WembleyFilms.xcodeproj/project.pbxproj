@@ -22,6 +22,7 @@
 		1ACC4AD32A2A693500BCA05A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD22A2A693500BCA05A /* World.swift */; };
 		1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */; };
 		1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */; };
+		1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		1ACC4AD22A2A693500BCA05A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
 		1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			children = (
 				1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */,
 				1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */,
+				1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
 				1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */,
+				1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */,
 				1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

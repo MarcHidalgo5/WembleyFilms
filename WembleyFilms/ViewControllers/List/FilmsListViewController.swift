@@ -168,7 +168,6 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
             let vm = try await dataSource.fetchFilmList()
             self.viewModel = vm
             snapshot.deleteAllItems()
-            snapshot.appendSections([.main])
             if self.viewModel.films.isEmpty {
                 snapshot.appendSections([.empty])
                 snapshot.appendItems([.emtpy])
