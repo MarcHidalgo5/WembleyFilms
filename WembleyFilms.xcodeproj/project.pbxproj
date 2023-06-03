@@ -23,6 +23,11 @@
 		1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */; };
 		1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */; };
 		1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */; };
+		1ACC4B012A2BB0BA00BCA05A /* AuthenticationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B002A2BB0BA00BCA05A /* AuthenticationDataSource.swift */; };
+		1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */; };
+		1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B052A2BB32F00BCA05A /* Endpoint.swift */; };
+		1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B0A2A2BB77A00BCA05A /* WembleyFilmsAPI.swift */; };
+		1ACC4B0D2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B0C2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,11 @@
 		1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
 		1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		1ACC4B002A2BB0BA00BCA05A /* AuthenticationDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDataSource.swift; sourceTree = "<group>"; };
+		1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WembleyFilmsAPIClient+Extensions.swift"; sourceTree = "<group>"; };
+		1ACC4B052A2BB32F00BCA05A /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		1ACC4B0A2A2BB77A00BCA05A /* WembleyFilmsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsAPI.swift; sourceTree = "<group>"; };
+		1ACC4B0C2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationTokenResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +86,8 @@
 		1ACC4A972A28F33D00BCA05A /* WembleyFilms */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4B042A2BB32600BCA05A /* Protocols */,
+				1ACC4ADF2A2ACD0900BCA05A /* Models */,
 				1ACC4AD52A2AB4FF00BCA05A /* Extensions */,
 				1ACC4ACF2A2A68A300BCA05A /* Network */,
 				1ACC4AC72A2A5F3A00BCA05A /* DataSource */,
@@ -179,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */,
+				1ACC4B002A2BB0BA00BCA05A /* AuthenticationDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -186,7 +199,7 @@
 		1ACC4ACF2A2A68A300BCA05A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
+				1ACC4B092A2BB75D00BCA05A /* WembleyFilmsAPIClient */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -197,8 +210,35 @@
 				1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */,
 				1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */,
 				1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */,
+				1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1ACC4ADF2A2ACD0900BCA05A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AE02A2ACD6A00BCA05A /* Film.swift */,
+				1ACC4B0C2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1ACC4B042A2BB32600BCA05A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B052A2BB32F00BCA05A /* Endpoint.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1ACC4B092A2BB75D00BCA05A /* WembleyFilmsAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */,
+				1ACC4B0A2A2BB77A00BCA05A /* WembleyFilmsAPI.swift */,
+			);
+			path = WembleyFilmsAPIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,7 +311,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
+				1ACC4B0D2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift in Sources */,
 				1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */,
 				1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */,
 				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
@@ -280,8 +322,11 @@
 				1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */,
 				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
 				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
+				1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */,
+				1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
+				1ACC4B012A2BB0BA00BCA05A /* AuthenticationDataSource.swift in Sources */,
 				1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */,
 				1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */,
 				1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */,
