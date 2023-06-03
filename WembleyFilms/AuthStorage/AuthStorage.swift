@@ -7,23 +7,23 @@ import Foundation
 public class AuthStorage {
     public static let defaultStorage = AuthStorage()
 
-    private let keychain: Keychain
+    private let userDefaultsStorage: UserDefaultsStorage
     
     public init() {
-        self.keychain = Keychain(service: Bundle.main.bundleIdentifier!)
+        self.userDefaultsStorage = UserDefaultsStorage()
     }
 
     public var userID: String? {
-        get { return keychain.get(Keys.UserID) }
-        set { keychain.set(Keys.UserID, value: newValue ?? "") }
+        get { return userDefaultsStorage.get(Keys.UserID) }
+        set { userDefaultsStorage.set(Keys.UserID, value: newValue ?? "") }
     }
     
     public var sessionID: String? {
-        get { return keychain.get(Keys.SessionID) }
-        set { keychain.set(Keys.SessionID, value: newValue ?? "") }
+        get { return userDefaultsStorage.get(Keys.SessionID) }
+        set { userDefaultsStorage.set(Keys.SessionID, value: newValue ?? "") }
     }
 
-    public func clearKeychain() {
+    public func clearUserDefaults() {
         self.userID = nil
         self.sessionID = nil
     }
@@ -35,39 +35,15 @@ private struct Keys {
 }
 
 
-import Security
+class UserDefaultsStorage {
+    private let defaults = UserDefaults.standard
 
-class Keychain {
-    private let service: String
-
-    init(service: String) {
-        self.service = service
-    }
-    
     func set(_ key: String, value: String) {
-        if let data = value.data(using: .utf8) {
-            let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
-                                        kSecAttrService as String: service,
-                                        kSecAttrAccount as String: key,
-                                        kSecValueData as String: data]
-            SecItemDelete(query as CFDictionary)
-            SecItemAdd(query as CFDictionary, nil)
-        }
+        defaults.set(value, forKey: key)
     }
 
     func get(_ key: String) -> String? {
-        let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
-                                    kSecAttrService as String: service,
-                                    kSecAttrAccount as String: key,
-                                    kSecReturnData as String: kCFBooleanTrue!,
-                                    kSecMatchLimit as String: kSecMatchLimitOne]
-        var dataTypeRef: AnyObject?
-        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
-        if status == noErr {
-            if let data = dataTypeRef as? Data {
-                return String(data: data, encoding: .utf8)
-            }
-        }
-        return nil
+        return defaults.string(forKey: key)
     }
 }
+
