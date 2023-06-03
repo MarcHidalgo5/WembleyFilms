@@ -16,10 +16,6 @@ class WembleyFilmsAPIClient {
         return try await fetch(from: endpoint)
     }
     
-    func authorizeRequestToken(requestToken: String) async throws {
-        let endpoint = AuthAPI.authorizeRequestToken(requestToken: requestToken)
-    }
-    
     func createSession(requestToken: String) async throws -> CreateSessionResponse {
         let endpoint = AuthAPI.createSession(requestToken: requestToken)
         return try await fetch(from: endpoint)

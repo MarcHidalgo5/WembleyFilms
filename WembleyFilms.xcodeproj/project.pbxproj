@@ -33,6 +33,7 @@
 		1ACC4B122A2BC01F00BCA05A /* CreateSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B112A2BC01F00BCA05A /* CreateSessionResponse.swift */; };
 		1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B132A2BC04800BCA05A /* UserAPI.swift */; };
 		1ACC4B162A2BC07100BCA05A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B152A2BC07100BCA05A /* User.swift */; };
+		1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		1ACC4B112A2BC01F00BCA05A /* CreateSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSessionResponse.swift; sourceTree = "<group>"; };
 		1ACC4B132A2BC04800BCA05A /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		1ACC4B152A2BC07100BCA05A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		1ACC4A972A28F33D00BCA05A /* WembleyFilms */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4B172A2BDA1300BCA05A /* AuthStorage */,
 				1ACC4B042A2BB32600BCA05A /* Protocols */,
 				1ACC4ADF2A2ACD0900BCA05A /* Models */,
 				1ACC4AD52A2AB4FF00BCA05A /* Extensions */,
@@ -263,6 +266,14 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		1ACC4B172A2BDA1300BCA05A /* AuthStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */,
+			);
+			path = AuthStorage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -339,6 +350,7 @@
 				1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */,
 				1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */,
 				1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */,
+				1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */,
 				1ACC4B122A2BC01F00BCA05A /* CreateSessionResponse.swift in Sources */,
 				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
 				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,

@@ -72,6 +72,7 @@ class StartViewController: UIViewController {
     private func startLogin() {
         Task { @MainActor in
             try await dataSource.login(fromVC: self)
+            self.delegate?.didFinishStart()
         }
     }
 }

@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let rootViewController = ContainerViewController(containedViewController: createViewController(forAppState: .start))
+        let rootViewController = ContainerViewController(containedViewController: createViewController(forAppState: currentAppState))
         window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         self.rootViewController = rootViewController
@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //MARK: Private
     
     private var rootViewController: ContainerViewController!
-    private var startPresentationIsFinish = false
     
     private func createViewController(forAppState appState: AppState) -> UIViewController {
         switch appState {
@@ -43,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private var currentAppState: AppState {
-        if startPresentationIsFinish {
+        if Current.authenticationDataSource.containsValidSession {
             return .normal
         } else {
             return .start
@@ -55,7 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate: StartViewControllerDelegate {
     func didFinishStart() {
-        self.startPresentationIsFinish = true
         updateContainedViewController()
     }
 }
