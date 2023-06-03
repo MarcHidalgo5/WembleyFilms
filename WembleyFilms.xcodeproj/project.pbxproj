@@ -20,6 +20,8 @@
 		1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */; };
 		1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */; };
 		1ACC4AD32A2A693500BCA05A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD22A2A693500BCA05A /* World.swift */; };
+		1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */; };
+		1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
 		1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsAPIClient.swift; sourceTree = "<group>"; };
 		1ACC4AD22A2A693500BCA05A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
+		1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 		1ACC4A972A28F33D00BCA05A /* WembleyFilms */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4AD52A2AB4FF00BCA05A /* Extensions */,
 				1ACC4ACF2A2A68A300BCA05A /* Network */,
 				1ACC4AC72A2A5F3A00BCA05A /* DataSource */,
 				1ACC4AB12A28FBE500BCA05A /* Assets */,
@@ -184,6 +189,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		1ACC4AD52A2AB4FF00BCA05A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */,
+				1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -256,6 +270,7 @@
 			files = (
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
 				1ACC4A9B2A28F33D00BCA05A /* SceneDelegate.swift in Sources */,
+				1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */,
 				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
 				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,
 				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,
@@ -264,6 +279,7 @@
 				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
+				1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */,
 				1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
