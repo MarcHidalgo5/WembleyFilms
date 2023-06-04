@@ -26,6 +26,9 @@ class StartViewController: UIViewController {
     private let dataSource: AuthenticationDataSourceType
     private weak var delegate: StartViewControllerDelegate?
     
+    private var activityIndicator: UIActivityIndicatorView!
+    private var blurEffectView: UIVisualEffectView!
+    
     private var startButton: UIButton!
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -55,6 +58,11 @@ class StartViewController: UIViewController {
         view.addSubview(logoImageView)
         view.addSubview(startButton)
         
+        blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        blurEffectView.isHidden = true // Inicia oculto
+        view.addSubview(blurEffectView)
+        
         NSLayoutConstraint.activate([
             logoImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             logoImageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20),
@@ -62,24 +70,58 @@ class StartViewController: UIViewController {
             logoImageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 20),
             
             startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            startButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            
+            blurEffectView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            blurEffectView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            blurEffectView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            blurEffectView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
         ])
     }
     
-    override func viewDidLoad() { }
+    override func viewDidLoad() {
+        configureActivityIndicator()
+    }
+    
+    private func configureActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        ])
+    }
+    
+    // MARK: Loading State Management
+    
+    func startLoading() {
+        activityIndicator.startAnimating()
+        blurEffectView.isHidden = false
+        startButton.isUserInteractionEnabled = false
+    }
+    
+    func stopLoading() {
+        activityIndicator.stopAnimating()
+        blurEffectView.isHidden = true
+        startButton.isUserInteractionEnabled = true
+    }
+    
+    //MARK: Private
     
     private func startLogin() {
-        startButton.isUserInteractionEnabled = false
+        startLoading()
         Task { @MainActor in
             do {
                 try await dataSource.login(fromVC: self)
                 self.delegate?.didFinishLogin()
-                startButton.isUserInteractionEnabled = true
+                stopLoading()
             } catch {
-                startButton.isUserInteractionEnabled = true
+                stopLoading()
                 showErrorAlert("Failed to login", error: error)
             }
-            
         }
     }
 }

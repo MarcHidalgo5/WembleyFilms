@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
         
         let viewControllers: [UIViewController] = [
             navigationController(with: filmsList),
-            viewController(with: favouritesFilms)
+            navigationController(with: favouritesFilms)
         ]
         self.setViewControllers(viewControllers, animated: true)
     }
