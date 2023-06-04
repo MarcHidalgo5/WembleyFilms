@@ -7,7 +7,7 @@ import Foundation
 enum FilmAPI: Endpoint {
     case films(page: Int)
     case searchFilms(text: String, page: Int)
-    case details(filmID: String)
+    case details(filmID: Int)
     case favouriteFilms(accountId: String, sessionId: String, page: Int)
     case setFavorite(accountId: String, sessionId: String, mediaId: Int, isFavourite: Bool)
     case isFavouriteFilm(accountId: String, sessionId: String, filmID: String)

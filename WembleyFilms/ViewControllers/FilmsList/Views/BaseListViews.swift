@@ -7,14 +7,14 @@ import UIKit
 extension BaseListViewController {
     enum ImageCell {
         struct Configuration: UIContentConfiguration, Hashable, Identifiable {
-            init(id: String, imageURL: URL?, title: String?, state: UICellConfigurationState? = nil) {
+            init(id: Int, imageURL: URL?, title: String?, state: UICellConfigurationState? = nil) {
                 self.id = id
                 self.imageURL = imageURL
                 self.title = title
                 self.state = nil
             }
             
-            let id: String
+            let id: Int
             let imageURL: URL?
             let title: String?
             

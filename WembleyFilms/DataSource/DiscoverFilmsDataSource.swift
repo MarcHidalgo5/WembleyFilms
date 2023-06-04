@@ -83,7 +83,7 @@ extension Array where Element == Film {
             let url = URL(string: urlString ?? "")
             
             return .init(
-                id: String(element.id),
+                id: element.id,
                 imageURL: url,
                 title: element.title ?? ""
             )

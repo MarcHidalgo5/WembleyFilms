@@ -6,7 +6,7 @@ import UIKit
 
 class FilmDetailsViewController: UIViewController {
     
-    init(filmID: String) {
+    init(filmID: Int) {
         self.currentFilmID = filmID
         self.dataSource = Current.filmDetaisDataSourceFactory()
         super.init(nibName: nil, bundle: nil)
@@ -36,7 +36,7 @@ class FilmDetailsViewController: UIViewController {
         let informationConfig: TextCell.Configuration
     }
         
-    var currentFilmID: String
+    var currentFilmID: Int
     var isProcessingData = false
     
     var viewModel: VM!

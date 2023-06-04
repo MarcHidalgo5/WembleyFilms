@@ -75,7 +75,7 @@ class FavouriteFilmsListViewController: BaseListViewController {
         }
     }
     
-    override func didSelectFilm(id: String) {
+    override func didSelectFilm(id: Int) {
         let vc = FilmDetailsViewController(filmID: id)
         let navVC = UINavigationController(rootViewController: vc)
         self.present(navVC, animated: true)
