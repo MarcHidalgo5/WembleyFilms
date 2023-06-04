@@ -45,7 +45,7 @@ extension BaseListViewController {
             }()
             
             let blurEffectView: UIVisualEffectView = {
-                let blurEffect = UIBlurEffect(style: .light)
+                let blurEffect = UIBlurEffect(style: .regular)
                 let blurEffectView = UIVisualEffectView(effect: blurEffect)
                 blurEffectView.translatesAutoresizingMaskIntoConstraints = false
                 return blurEffectView
@@ -56,6 +56,7 @@ extension BaseListViewController {
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.numberOfLines = 0
                 label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+                label.textColor = .white
                 label.textAlignment = .center
                 return label
             }()
@@ -85,8 +86,8 @@ extension BaseListViewController {
                     blurEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
                     
                     label.topAnchor.constraint(equalTo: topAnchor),
-                    label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-                    label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+                    label.leadingAnchor.constraint(equalTo: leadingAnchor),
+                    label.trailingAnchor.constraint(equalTo: trailingAnchor),
                     label.bottomAnchor.constraint(equalTo: bottomAnchor),
                 ])
             }
@@ -139,7 +140,7 @@ extension BaseListViewController {
                 super.init(frame: .zero)
                 
                 let title = "It seems that no movie was found"
-                label.attributedText = title.createAttributedString(fontSize: 20)
+                label.attributedText = title.createAttributedString(fontSize: 20, color: UIColor(named: "wembley-films-title-color")!)
                 
                 addSubview(label)
                 label.translatesAutoresizingMaskIntoConstraints = false

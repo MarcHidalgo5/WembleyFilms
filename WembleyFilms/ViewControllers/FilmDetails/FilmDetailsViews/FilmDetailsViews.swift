@@ -100,6 +100,7 @@ enum TextCell {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.numberOfLines = 0
+            label.textColor = .black
             label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             label.textAlignment = .justified
             return label

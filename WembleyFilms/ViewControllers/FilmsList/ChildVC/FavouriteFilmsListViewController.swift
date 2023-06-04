@@ -10,7 +10,7 @@ class FavouriteFilmsListViewController: BaseListViewController {
     override init() {
         self.dataSource = Current.favouriteFilmsDataSourceFactory()
         super.init()
-        self.title = "Favourites Movies"
+        self.title = "Favourit Movies"
     }
     
     private let dataSource: FavouriteFilmsDataSourceType
