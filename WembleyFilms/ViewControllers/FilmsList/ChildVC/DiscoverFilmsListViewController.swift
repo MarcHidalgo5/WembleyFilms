@@ -120,7 +120,7 @@ extension UISearchController {
         let resultsVC = DiscoverFilmsListViewController()
         let searchController = UISearchController(searchResultsController: resultsVC)
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = ""
+        searchController.searchBar.placeholder = "Search movies"
         searchController.searchBar.autocorrectionType = .no
         searchController.searchBar.autocapitalizationType = .none
         searchController.searchResultsUpdater = resultsVC

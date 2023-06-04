@@ -140,7 +140,7 @@ extension BaseListViewController {
                 super.init(frame: .zero)
                 
                 let title = "It seems that no movie was found"
-                label.attributedText = title.createAttributedString(fontSize: 20)
+                label.attributedText = title.createAttributedString(fontSize: 20, color: UIColor(named: "wembley-films-title-color")!)
                 
                 addSubview(label)
                 label.translatesAutoresizingMaskIntoConstraints = false

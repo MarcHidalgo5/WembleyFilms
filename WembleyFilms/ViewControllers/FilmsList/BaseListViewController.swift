@@ -154,6 +154,7 @@ class BaseListViewController: UIViewController {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.backgroundColor = UIColor(named: "wembley-films-background-color")
         collectionView.delegate = self
+        collectionView.keyboardDismissMode = .onDrag
         view.addSubview(collectionView)
     }
     

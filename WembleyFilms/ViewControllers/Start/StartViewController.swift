@@ -119,8 +119,14 @@ class StartViewController: UIViewController {
                 self.delegate?.didFinishLogin()
                 stopLoading()
             } catch {
-                stopLoading()
-                showErrorAlert("Failed to login", error: error)
+                if let authError = error as? AuthenticationDataSource.AuthError, authError == .userCanceled {
+                    // El usuario ha cancelado la autenticación
+                    stopLoading()
+                    // Manejar la cancelación de autenticación según tus necesidades
+                } else {
+                    stopLoading()
+                    showErrorAlert("Failed to login", error: error)
+                }
             }
         }
     }

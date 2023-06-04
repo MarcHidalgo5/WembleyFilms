@@ -75,12 +75,17 @@ class AuthenticationDataSource: AuthenticationDataSourceType {
         let callbackURLScheme = "wembleyFilms"
         return try await withCheckedThrowingContinuation { continuation in
             let authenticationSession = ASWebAuthenticationSession(url: authURL, callbackURLScheme: callbackURLScheme) { callbackURL, error in
-                    
+                
                 if let error = error {
-                    continuation.resume(throwing: NSError(domain: "Authentication Error", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error authenticating: \(error.localizedDescription)"]))
+                    if let authError = error as? ASWebAuthenticationSessionError, authError.code == .canceledLogin {
+                        // El usuario ha cancelado la autenticación
+                        continuation.resume(throwing: AuthError.userCanceled)
+                    } else {
+                        continuation.resume(throwing: NSError(domain: "Authentication Error", code: 1, userInfo: [NSLocalizedDescriptionKey: "Error authenticating: \(error.localizedDescription)"]))
+                    }
                     return
                 }
-                    
+                
                 guard let callbackURL = callbackURL else {
                     continuation.resume(throwing: NSError(domain: "Invalid Callback URL", code: 2, userInfo: [NSLocalizedDescriptionKey: "No valid callback URL"]))
                     return
@@ -91,5 +96,9 @@ class AuthenticationDataSource: AuthenticationDataSourceType {
             authenticationSession.presentationContextProvider = fromVC
             authenticationSession.start()
         }
+    }
+    
+    enum AuthError: Error {
+        case userCanceled
     }
 }
