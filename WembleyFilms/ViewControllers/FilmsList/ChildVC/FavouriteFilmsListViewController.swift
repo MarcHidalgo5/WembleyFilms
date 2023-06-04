@@ -5,12 +5,15 @@
 import Foundation
 import UIKit
 
-class FavouriteFilmsViewController: BaseListViewController {
+class FavouriteFilmsListViewController: BaseListViewController {
     
     override init() {
+        self.dataSource = Current.favouriteFilmsDataSourceFactory()
         super.init()
         self.title = "Favourites Movies"
     }
+    
+    private let dataSource: FavouriteFilmsDataSourceType
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

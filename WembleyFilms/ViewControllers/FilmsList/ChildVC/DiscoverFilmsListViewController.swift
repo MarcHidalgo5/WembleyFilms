@@ -8,6 +8,7 @@ import UIKit
 class DiscoverFilmsListViewController: BaseListViewController {
     
     override init() {
+        self.dataSource = Current.discoverFilmsDataSourceFactory()
         super.init()
         self.title = "Movies"
     }
@@ -15,6 +16,8 @@ class DiscoverFilmsListViewController: BaseListViewController {
     private var currentText: String?
     
     private let debouncer = Debouncer(interval: 0.5)
+    
+    private let dataSource: DiscoverFilmsDataSourceType
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

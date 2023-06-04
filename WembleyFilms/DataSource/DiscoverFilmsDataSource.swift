@@ -4,15 +4,13 @@
 
 import UIKit
 
-protocol ListDataSourceType {
+protocol DiscoverFilmsDataSourceType {
     func fetchFilmList() async throws -> BaseListViewController.VM
     func fetchNextPage() async throws -> BaseListViewController.VM
     func searchFilms(text: String) async throws -> BaseListViewController.VM
-    func fetchFavouriteFilms() async throws -> BaseListViewController.VM
-    func fetchFavouriteFilmsNextPage() async throws -> BaseListViewController.VM
 }
 
-class ListDataSource: ListDataSourceType {
+class DiscoverFilmsDataSource: DiscoverFilmsDataSourceType {
     
     init(apiClient: WembleyFilmsAPIClient) {
         self.apiClient = apiClient
@@ -21,7 +19,7 @@ class ListDataSource: ListDataSourceType {
     let apiClient: WembleyFilmsAPIClient
     
     private var nextPage: Int = 1
-    private(set) var morePagesAreAvailable: Bool = true
+    private var morePagesAreAvailable: Bool = true
     
     private var mode: Mode = .discoverFilms
     
@@ -71,19 +69,12 @@ class ListDataSource: ListDataSourceType {
         return .init(films: pageResult.films.viewModel)
     }
     
-    func fetchFavouriteFilms() async throws -> BaseListViewController.VM {
-        let pageResult =  try await self.apiClient.fetchFavouritesFilms()
-        return .init(films: pageResult.films.viewModel)
-    }
     
-    func fetchFavouriteFilmsNextPage() async throws -> BaseListViewController.VM {
-        fatalError()
-    }
     
 }
 
 extension Array where Element == Film {
-    var viewModel: [ListViewController.ImageCell.Configuration] {
+    var viewModel: [BaseListViewController.ImageCell.Configuration] {
         compactMap { element in
             
             let urlString = element.posterPath.flatMap {

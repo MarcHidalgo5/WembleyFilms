@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         )
         
         let favouritesFilms: (UIViewController, UITabBarItem) = (
-            FavouriteFilmsViewController(),
+            FavouriteFilmsListViewController(),
             UITabBarItem(title: "Favourites", image: UIImage(systemName: "list.star"), selectedImage: UIImage(systemName: "list.star")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         )
         

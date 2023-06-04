@@ -8,7 +8,7 @@ enum FilmAPI: Endpoint {
     case films(page: Int)
     case searchFilms(text: String, page: Int)
     case details(filmID: String)
-    case favouriteFilms(accountId: String, sessionId: String)
+    case favouriteFilms(accountId: String, sessionId: String, page: Int)
     case setFavorite(userID: String, sessionId: String, mediaId: Int, isFavourite: Bool)
 
     var path: String {
@@ -19,7 +19,7 @@ enum FilmAPI: Endpoint {
             return "search/movie"
         case .details(let filmID):
             return "movie/\(filmID)"
-        case .favouriteFilms(let userID, _):
+        case .favouriteFilms(let userID, _, _):
             return "account/\(userID)/favorite/movies"
         case .setFavorite(let userID, _, _, _):
             return "account/\(userID)/favorite"
@@ -46,8 +46,11 @@ enum FilmAPI: Endpoint {
             ]
         case .details:
             return [:]
-        case .favouriteFilms(_, let sessionId):
-            return ["session_id": sessionId]
+        case .favouriteFilms(_, let sessionId, let page):
+            return [
+                "session_id": sessionId,
+                "page": page
+            ]
         case .setFavorite(_, let sessionId, let mediaId, let isFavourite):
             return [
                 "session_id": sessionId,
