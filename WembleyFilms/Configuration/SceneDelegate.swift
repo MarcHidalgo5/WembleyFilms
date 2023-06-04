@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //MARK: StartViewControllerDelegate
 
 extension SceneDelegate: StartViewControllerDelegate {
-    func didFinishStart() {
+    func didFinishLogin() {
         updateContainedViewController()
     }
 }

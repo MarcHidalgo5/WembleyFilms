@@ -23,6 +23,8 @@ class DiscoverFilmsListViewController: BaseListViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = UISearchController.wembleyFilmsSearch()
@@ -96,6 +98,8 @@ class DiscoverFilmsListViewController: BaseListViewController {
     }
 }
 
+//MARK: UISearchResultsUpdating
+
 extension DiscoverFilmsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let text = (searchController.searchBar.text ?? "")
@@ -107,6 +111,8 @@ extension DiscoverFilmsListViewController: UISearchResultsUpdating {
         debouncer.call()
     }
 }
+
+//MARK: UISearchController
 
 extension UISearchController {
     

@@ -6,9 +6,11 @@ import Foundation
 
 class WembleyFilmsAPIClient {
     
-    init() { }
+    var session: URLSession
     
-    let session = URLSession(configuration: .default)
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
     
     var userSessionID: String?
     var userID: String?

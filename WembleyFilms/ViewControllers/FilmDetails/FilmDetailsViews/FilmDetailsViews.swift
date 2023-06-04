@@ -163,7 +163,12 @@ enum ButtonCell {
         }()
         
         
-        var configuration: UIContentConfiguration
+        var configuration: UIContentConfiguration {
+            didSet {
+                guard let config = configuration as? Configuration else { return }
+                configureFor(configuration: config)
+            }
+        }
 
         init(configuration: Configuration) {
             self.configuration = configuration
@@ -182,8 +187,6 @@ enum ButtonCell {
                 button.centerXAnchor.constraint(equalTo: centerXAnchor),
                 button.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
-            
-            configureFor(configuration: configuration)
         }
         
         required init?(coder: NSCoder) {

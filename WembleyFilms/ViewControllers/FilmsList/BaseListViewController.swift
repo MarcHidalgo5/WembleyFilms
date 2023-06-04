@@ -194,6 +194,8 @@ class BaseListViewController: UIViewController {
     }
 }
 
+//MARK: UICollectionViewDelegate
+
 extension BaseListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

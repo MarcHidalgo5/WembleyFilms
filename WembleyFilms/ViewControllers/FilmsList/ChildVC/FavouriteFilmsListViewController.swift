@@ -19,20 +19,17 @@ class FavouriteFilmsListViewController: BaseListViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(updateFavourites),
-            name: DidUpdateFavouritesNotification,
+            name: DidUpdateFavouriteNotification,
             object: nil
         )
     }
-    
-    @objc func updateFavourites() {
-        self.fetchData()
-    }
-
     
     override func fetchData() {
         guard !isRequestingNextPage else { return }
@@ -79,5 +76,11 @@ class FavouriteFilmsListViewController: BaseListViewController {
         let vc = FilmDetailsViewController(filmID: id)
         let navVC = UINavigationController(rootViewController: vc)
         self.present(navVC, animated: true)
+    }
+    
+    //MARK: Selector
+    
+    @objc func updateFavourites() {
+        self.fetchData()
     }
 }

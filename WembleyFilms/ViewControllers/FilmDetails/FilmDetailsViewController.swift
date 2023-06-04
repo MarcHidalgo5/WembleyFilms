@@ -17,13 +17,13 @@ class FilmDetailsViewController: UIViewController {
         static let MediumSpacing: CGFloat = 12
     }
     
-    enum Section {
+    private enum Section {
         case image
         case text
         case button
     }
 
-    enum Item: Hashable {
+    private enum Item: Hashable {
         case imageItem(ImageCell.Configuration)
         case textItem(TextCell.Configuration)
         case buttonItem
@@ -36,13 +36,13 @@ class FilmDetailsViewController: UIViewController {
         let informationConfig: TextCell.Configuration
     }
         
-    var currentFilmID: Int
-    var isProcessingData = false
+    private var currentFilmID: Int
+    private var isProcessingData = false
     
-    var viewModel: VM!
-    var collectionView: UICollectionView!
-    var diffableDataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    let dataSource: FilmDetailsDataSourceType!
+    private var viewModel: VM!
+    private var collectionView: UICollectionView!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    private let dataSource: FilmDetailsDataSourceType!
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -130,6 +130,8 @@ class FilmDetailsViewController: UIViewController {
     }
 }
 
+//MARK: UICollectionViewDelegate
+
 extension FilmDetailsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !isProcessingData, var isFavourite = self.viewModel.isFavourite else { return }
@@ -143,15 +145,17 @@ extension FilmDetailsViewController: UICollectionViewDelegate {
                 snapshot.reloadItems([.buttonItem])
                 isProcessingData = false
                 await diffableDataSource.apply(snapshot)
-                NotificationCenter.default.post(name: DidUpdateFavouritesNotification, object: nil)
+                NotificationCenter.default.post(name: DidUpdateFavouriteNotification, object: nil)
             } catch {
-                showErrorAlert("Error adding favourite", error: error)
+                showErrorAlert("Error setting favourite", error: error)
                 isProcessingData = false
             }
         }
     }
     
 }
+
+//MARK: Layout
 
 private extension FilmDetailsViewController {
     static var ImageLayout: NSCollectionLayoutSection {

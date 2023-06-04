@@ -19,8 +19,8 @@ class TabBarController: UITabBarController {
         )
         
         let viewControllers: [UIViewController] = [
-            navigationController(with: filmsList),
-            navigationController(with: favouritesFilms)
+            viewController(with: filmsList),
+            viewController(with: favouritesFilms)
         ]
         self.setViewControllers(viewControllers, animated: true)
     }
@@ -51,12 +51,6 @@ class TabBarController: UITabBarController {
     }
             
     // MARK: Private
-
-    private func navigationController(with tuple:(UIViewController, UITabBarItem)) -> UIViewController {
-        let navVC = UINavigationController(rootViewController: tuple.0)
-        navVC.tabBarItem = tuple.1
-        return navVC
-    }
     
     private func viewController(with tuple:(UIViewController, UITabBarItem)) -> UIViewController {
         let vc = tuple.0

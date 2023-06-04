@@ -8,7 +8,7 @@ import AuthenticationServices
 protocol ASWebAuthenticationViewController: UIViewController, ASWebAuthenticationPresentationContextProviding { }
 
 protocol StartViewControllerDelegate: AnyObject {
-    func didFinishStart()
+    func didFinishLogin()
 }
 
 class StartViewController: UIViewController {
@@ -65,15 +65,13 @@ class StartViewController: UIViewController {
         ])
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    override func viewDidLoad() { }
     
     private func startLogin() {
         Task { @MainActor in
             do {
                 try await dataSource.login(fromVC: self)
-                self.delegate?.didFinishStart()
+                self.delegate?.didFinishLogin()
             } catch {
                 showErrorAlert("Failed to login", error: error)
             }
@@ -86,6 +84,4 @@ extension StartViewController: ASWebAuthenticationViewController {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return view.window!
     }
-    
-    
 }

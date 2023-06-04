@@ -103,7 +103,4 @@ final class WembleyFilmsTests: XCTestCase {
         XCTAssertEqual(isFavouriteFilmAPI.method, .GET)
         XCTAssertEqual(isFavouriteFilmAPI.parameters?.isEmpty, true)
     }
-    
-    
 }
-
