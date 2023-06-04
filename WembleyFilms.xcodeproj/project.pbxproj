@@ -43,6 +43,9 @@
 		1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */; };
 		1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */; };
 		1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */; };
+		1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */; };
+		1ACC4B312A2CD20B00BCA05A /* BaseListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */; };
+		1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +85,9 @@
 		1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
 		1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteResponse.swift; sourceTree = "<group>"; };
+		1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFilmsListViewController.swift; sourceTree = "<group>"; };
+		1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViews.swift; sourceTree = "<group>"; };
+		1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +153,7 @@
 			children = (
 				1ACC4ABE2A2A318100BCA05A /* Favourite */,
 				1ACC4ABB2A2A30EA00BCA05A /* Details */,
-				1ACC4ABA2A2A30CE00BCA05A /* List */,
+				1ACC4ABA2A2A30CE00BCA05A /* FilmsList */,
 				1ACC4AB92A2A2FEB00BCA05A /* Start */,
 				1ACC4AB82A2A2FD900BCA05A /* TabBar */,
 				1ACC4AB72A2A2D3D00BCA05A /* Helpers */,
@@ -187,14 +193,14 @@
 			path = Start;
 			sourceTree = "<group>";
 		};
-		1ACC4ABA2A2A30CE00BCA05A /* List */ = {
+		1ACC4ABA2A2A30CE00BCA05A /* FilmsList */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4B322A2CD25B00BCA05A /* BaseList */,
 				1ACC4AC42A2A591E00BCA05A /* ListViews */,
 				1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */,
-				1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */,
 			);
-			path = List;
+			path = FilmsList;
 			sourceTree = "<group>";
 		};
 		1ACC4ABB2A2A30EA00BCA05A /* Details */ = {
@@ -299,6 +305,33 @@
 			path = FilmDetailsViews;
 			sourceTree = "<group>";
 		};
+		1ACC4B322A2CD25B00BCA05A /* BaseList */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B342A2CD28400BCA05A /* ChildVC */,
+				1ACC4B332A2CD26600BCA05A /* Views */,
+				1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */,
+			);
+			path = BaseList;
+			sourceTree = "<group>";
+		};
+		1ACC4B332A2CD26600BCA05A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1ACC4B342A2CD28400BCA05A /* ChildVC */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */,
+				1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsViewController.swift */,
+			);
+			path = ChildVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -376,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsViewController.swift in Sources */,
 				1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
 				1ACC4B1D2A2C258000BCA05A /* Debouncer.swift in Sources */,
@@ -395,10 +429,12 @@
 				1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */,
 				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
 				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
+				1ACC4B312A2CD20B00BCA05A /* BaseListViews.swift in Sources */,
 				1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */,
 				1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */,
 				1ACC4B102A2BBFB000BCA05A /* AuthAPI.swift in Sources */,
 				1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */,
+				1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4AE12A2ACD6A00BCA05A /* Film.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,

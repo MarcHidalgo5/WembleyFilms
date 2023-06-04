@@ -6,6 +6,8 @@ import UIKit
 
 class ListViewController: UIViewController, UISearchResultsUpdating {
     
+    typealias VM = BaseListViewController.VM
+    
     init() {
         self.dataSource = Current.listDataSourceFactory()
         super.init(nibName: nil, bundle: nil)
@@ -24,10 +26,6 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
     private enum ItemID: Hashable {
         case film(ImageCell.Configuration.ID)
         case emtpy
-    }
-    
-    struct VM {
-        var films: [ImageCell.Configuration]
     }
     
     private var activityIndicator: UIActivityIndicatorView!
@@ -60,6 +58,7 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
         configurePullToRefresh()
         configureActivityIndicator()
         configureDiffableDataSource()
+        configureFavoriteButton()
         fetchData()
         debouncer.callback = { [weak self] in
             guard let self = self else { return }
@@ -117,6 +116,16 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
     }
     
     //MARK: Configuration
+    
+    private func configureFavoriteButton() {
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(toggleFavoriteFilter))
+        favoriteButton.tintColor = .black
+        navigationItem.rightBarButtonItem = favoriteButton
+    }
+
+    @objc private func toggleFavoriteFilter() {
+        print("tap")
+    }
     
     private func configureDiffableDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, ImageCell.Configuration> { (cell, indexPath, itemIdentifier) in
@@ -300,20 +309,6 @@ private extension ListViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: Constants.MediumSpacing, bottom: Constants.MediumSpacing, trailing: Constants.MediumSpacing)
         return section
-    }
-}
-
-extension UISearchController {
-    
-    static func wembleyFilmsSearch() -> UISearchController {
-        let resultsVC = ListViewController()
-        let searchController = UISearchController(searchResultsController: resultsVC)
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = ""
-        searchController.searchBar.autocorrectionType = .no
-        searchController.searchBar.autocapitalizationType = .none
-        searchController.searchResultsUpdater = resultsVC
-        return searchController
     }
 }
 

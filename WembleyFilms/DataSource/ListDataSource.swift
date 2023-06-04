@@ -5,9 +5,11 @@
 import UIKit
 
 protocol ListDataSourceType {
-    func fetchFilmList() async throws -> ListViewController.VM
-    func fetchNextPage() async throws -> ListViewController.VM
-    func searchFilms(text: String) async throws -> ListViewController.VM
+    func fetchFilmList() async throws -> BaseListViewController.VM
+    func fetchNextPage() async throws -> BaseListViewController.VM
+    func searchFilms(text: String) async throws -> BaseListViewController.VM
+    func fetchFavouriteFilms() async throws -> BaseListViewController.VM
+    func fetchFavouriteFilmsNextPage() async throws -> BaseListViewController.VM
 }
 
 class ListDataSource: ListDataSourceType {
@@ -28,7 +30,7 @@ class ListDataSource: ListDataSourceType {
         case search(text: String)
     }
     
-    func fetchFilmList() async throws -> ListViewController.VM {
+    func fetchFilmList() async throws -> BaseListViewController.VM {
         self.mode = .discoverFilms
         self.nextPage = 1
         self.morePagesAreAvailable = true
@@ -40,7 +42,7 @@ class ListDataSource: ListDataSourceType {
         return .init(films: pageResult.films.viewModel)
     }
     
-    func fetchNextPage() async throws -> ListViewController.VM {
+    func fetchNextPage() async throws -> BaseListViewController.VM {
         guard morePagesAreAvailable else {  return .init(films: []) }
         let pageResult: FilmAPIResponse = try await {
             switch mode {
@@ -57,7 +59,7 @@ class ListDataSource: ListDataSourceType {
         return .init(films: pageResult.films.viewModel)
     }
     
-    func searchFilms(text: String) async throws -> ListViewController.VM {
+    func searchFilms(text: String) async throws -> BaseListViewController.VM {
         self.mode = .search(text: text)
         self.nextPage = 1
         self.morePagesAreAvailable = true
@@ -68,6 +70,16 @@ class ListDataSource: ListDataSourceType {
         self.nextPage += 1
         return .init(films: pageResult.films.viewModel)
     }
+    
+    func fetchFavouriteFilms() async throws -> BaseListViewController.VM {
+        let pageResult =  try await self.apiClient.fetchFavouritesFilms()
+        return .init(films: pageResult.films.viewModel)
+    }
+    
+    func fetchFavouriteFilmsNextPage() async throws -> BaseListViewController.VM {
+        fatalError()
+    }
+    
 }
 
 extension Array where Element == Film {

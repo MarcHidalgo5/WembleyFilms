@@ -2,17 +2,14 @@
 //  Created by Marc Hidalgo on 3/6/23.
 //
 
-//
-//  Created by Marc Hidalgo on 3/6/23.
-//
-
 import Foundation
 
 enum FilmAPI: Endpoint {
     case films(page: Int)
     case searchFilms(text: String, page: Int)
     case details(filmID: String)
-    case favorite(accountId: String, sessionId: String, mediaId: Int, isFavourite: Bool)
+    case favouriteFilms(accountId: String, sessionId: String)
+    case setFavorite(userID: String, sessionId: String, mediaId: Int, isFavourite: Bool)
 
     var path: String {
         switch self {
@@ -22,16 +19,18 @@ enum FilmAPI: Endpoint {
             return "search/movie"
         case .details(let filmID):
             return "movie/\(filmID)"
-        case .favorite(let accountId, _, _, _):
-            return "account/\(accountId)/favorite"
+        case .favouriteFilms(let userID, _):
+            return "account/\(userID)/favorite/movies"
+        case .setFavorite(let userID, _, _, _):
+            return "account/\(userID)/favorite"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .films, .searchFilms, .details:
+        case .films, .searchFilms, .details, .favouriteFilms:
             return .GET
-        case .favorite:
+        case .setFavorite:
             return .POST
         }
     }
@@ -47,7 +46,9 @@ enum FilmAPI: Endpoint {
             ]
         case .details:
             return [:]
-        case .favorite(_, let sessionId, let mediaId, let isFavourite):
+        case .favouriteFilms(_, let sessionId):
+            return ["session_id": sessionId]
+        case .setFavorite(_, let sessionId, let mediaId, let isFavourite):
             return [
                 "session_id": sessionId,
                 "media_type": "movie",
