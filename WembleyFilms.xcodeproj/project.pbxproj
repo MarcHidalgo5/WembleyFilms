@@ -35,6 +35,14 @@
 		1ACC4B162A2BC07100BCA05A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B152A2BC07100BCA05A /* User.swift */; };
 		1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */; };
 		1ACC4B1B2A2BE86400BCA05A /* FilmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */; };
+		1ACC4B1D2A2C258000BCA05A /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */; };
+		1ACC4B1F2A2C28C700BCA05A /* FilmDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1E2A2C28C700BCA05A /* FilmDetailsViewController.swift */; };
+		1ACC4B222A2C2D1900BCA05A /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 1ACC4B212A2C2D1900BCA05A /* Nuke */; };
+		1ACC4B242A2C2D1900BCA05A /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 1ACC4B232A2C2D1900BCA05A /* NukeExtensions */; };
+		1ACC4B272A2C93EC00BCA05A /* FilmDetailsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */; };
+		1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */; };
+		1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */; };
+		1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +76,12 @@
 		1ACC4B152A2BC07100BCA05A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStorage.swift; sourceTree = "<group>"; };
 		1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmAPI.swift; sourceTree = "<group>"; };
+		1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		1ACC4B1E2A2C28C700BCA05A /* FilmDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViewController.swift; sourceTree = "<group>"; };
+		1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViews.swift; sourceTree = "<group>"; };
+		1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsDataSource.swift; sourceTree = "<group>"; };
+		1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
+		1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B222A2C2D1900BCA05A /* Nuke in Frameworks */,
+				1ACC4B242A2C2D1900BCA05A /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +192,7 @@
 			children = (
 				1ACC4AC42A2A591E00BCA05A /* ListViews */,
 				1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */,
+				1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -183,6 +200,8 @@
 		1ACC4ABB2A2A30EA00BCA05A /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				1ACC4B252A2C93C800BCA05A /* FilmDetailsViews */,
+				1ACC4B1E2A2C28C700BCA05A /* FilmDetailsViewController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -207,6 +226,7 @@
 			children = (
 				1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */,
 				1ACC4B002A2BB0BA00BCA05A /* AuthenticationDataSource.swift */,
+				1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -228,6 +248,7 @@
 				1ACC4AD82A2ABFAA00BCA05A /* NSAttributedString.swift */,
 				1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */,
 				1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */,
+				1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,6 +260,7 @@
 				1ACC4AE02A2ACD6A00BCA05A /* Film.swift */,
 				1ACC4B112A2BC01F00BCA05A /* CreateSessionResponse.swift */,
 				1ACC4B152A2BC07100BCA05A /* User.swift */,
+				1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -269,6 +291,14 @@
 			path = AuthStorage;
 			sourceTree = "<group>";
 		};
+		1ACC4B252A2C93C800BCA05A /* FilmDetailsViews */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */,
+			);
+			path = FilmDetailsViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -285,6 +315,10 @@
 			dependencies = (
 			);
 			name = WembleyFilms;
+			packageProductDependencies = (
+				1ACC4B212A2C2D1900BCA05A /* Nuke */,
+				1ACC4B232A2C2D1900BCA05A /* NukeExtensions */,
+			);
 			productName = WembleyFilms;
 			productReference = 1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +347,9 @@
 				Base,
 			);
 			mainGroup = 1ACC4A8C2A28F33C00BCA05A;
+			packageReferences = (
+				1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 1ACC4A962A28F33D00BCA05A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +378,8 @@
 			files = (
 				1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
+				1ACC4B1D2A2C258000BCA05A /* Debouncer.swift in Sources */,
+				1ACC4B272A2C93EC00BCA05A /* FilmDetailsViews.swift in Sources */,
 				1ACC4B0D2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift in Sources */,
 				1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */,
 				1ACC4B1B2A2BE86400BCA05A /* FilmAPI.swift in Sources */,
@@ -349,18 +388,22 @@
 				1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */,
 				1ACC4B122A2BC01F00BCA05A /* CreateSessionResponse.swift in Sources */,
 				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
+				1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */,
 				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,
 				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,
 				1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */,
+				1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */,
 				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
 				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
 				1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */,
 				1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */,
 				1ACC4B102A2BBFB000BCA05A /* AuthAPI.swift in Sources */,
+				1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4AE12A2ACD6A00BCA05A /* Film.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
 				1ACC4B012A2BB0BA00BCA05A /* AuthenticationDataSource.swift in Sources */,
+				1ACC4B1F2A2C28C700BCA05A /* FilmDetailsViewController.swift in Sources */,
 				1ACC4B162A2BC07100BCA05A /* User.swift in Sources */,
 				1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */,
 				1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */,
@@ -572,6 +615,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1ACC4B212A2C2D1900BCA05A /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		1ACC4B232A2C2D1900BCA05A /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1ACC4A8D2A28F33C00BCA05A /* Project object */;
 }

@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UICollectionViewDelegate {
+class ListViewController: UIViewController, UISearchResultsUpdating {
     
     init() {
         self.dataSource = Current.listDataSourceFactory()
@@ -27,7 +27,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     }
     
     struct VM {
-        let films: [ImageCell.Configuration]
+        var films: [ImageCell.Configuration]
     }
     
     private var activityIndicator: UIActivityIndicatorView!
@@ -38,31 +38,80 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
     private var viewModel: VM!
     private let dataSource: ListDataSourceType
     
+    private var isRequestingNextPage: Bool = false
+    
+    let debouncer = Debouncer(interval: 0.5)
+        
+    var currentText: String?
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        self.title = "Films"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = UISearchController.wembleyFilmsSearch()
         configureCollectionView()
         configurePullToRefresh()
         configureActivityIndicator()
         configureDiffableDataSource()
         fetchData()
+        debouncer.callback = { [weak self] in
+            guard let self = self else { return }
+            if let text = self.currentText, !text.isEmpty {
+                self.searchData(text: text)
+            }
+        }
     }
     
     //MARK: Private
     
     private func fetchData() {
+        guard !isRequestingNextPage else { return }
+        isRequestingNextPage = true
         startLoading()
         Task { @MainActor in
             do {
                 let vm = try await dataSource.fetchFilmList()
                 await configureFor(viewModel: vm)
                 stopLoading()
+                self.isRequestingNextPage = false
             } catch {
                 self.showErrorAlert("Fail loading films", error: error)
                 stopLoading()
+                self.isRequestingNextPage = false
+            }
+        }
+    }
+    
+    private func fetchNextPage() {
+        guard !isRequestingNextPage else { return }
+        isRequestingNextPage = true
+        Task { @MainActor in
+            do {
+                let vm = try await dataSource.fetchNextPage()
+                await configureForNextPage(viewModel: vm)
+                self.isRequestingNextPage = false
+            } catch {
+                self.isRequestingNextPage = false
+            }
+        }
+    }
+    
+    private func searchData(text: String) {
+        isRequestingNextPage = true
+        Task { @MainActor in
+            do {
+                let vm = try await self.dataSource.searchFilms(text: text)
+                isRequestingNextPage = false
+                await self.configureFor(viewModel: vm)
+            } catch {
+                isRequestingNextPage = false
             }
         }
     }
@@ -111,19 +160,29 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
         snapshot.deleteAllItems()
         if self.viewModel.films.isEmpty {
             snapshot.appendSections([.empty])
-            snapshot.appendItems([.emtpy])
+            snapshot.appendItems([.emtpy], toSection: .empty)
         } else {
             snapshot.appendSections([.main])
             self.viewModel.films.forEach { film in
-                snapshot.appendItems([.film(film.id)])
+                snapshot.appendItems([.film(film.id)], toSection: .main)
             }
+        }
+        await diffableDataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func configureForNextPage(viewModel: VM) async {
+        self.viewModel.films.append(contentsOf: viewModel.films)
+        var snapshot = diffableDataSource.snapshot()
+        viewModel.films.forEach { film in
+            snapshot.appendItems([.film(film.id)], toSection: .main)
         }
         await diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "wembley-film-background-color")
+        collectionView.delegate = self
         view.addSubview(collectionView)
     }
     
@@ -181,6 +240,39 @@ class ListViewController: UIViewController, UICollectionViewDelegate {
             self.showErrorAlert("Fail loading films", error: error)
         }
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let text = (searchController.searchBar.text ?? "")
+        if text.isEmpty {
+            self.currentText = nil
+        } else {
+            self.currentText = searchController.searchBar.text
+        }
+        debouncer.call()
+    }
+}
+
+extension ListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = diffableDataSource.itemIdentifier(for: indexPath) else { return }
+        switch item {
+        case .film(let id):
+            let vc = FilmDetailsViewController(filmID: id)
+            self.show(vc, sender: nil)
+        case .emtpy:
+            break
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        guard offsetY > 0, contentHeight > 0 else { return }
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            fetchNextPage()
+        }
+    }
 }
 
 //MARK: Layout
@@ -208,6 +300,20 @@ private extension ListViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: Constants.MediumSpacing, bottom: Constants.MediumSpacing, trailing: Constants.MediumSpacing)
         return section
+    }
+}
+
+extension UISearchController {
+    
+    static func wembleyFilmsSearch() -> UISearchController {
+        let resultsVC = ListViewController()
+        let searchController = UISearchController(searchResultsController: resultsVC)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = ""
+        searchController.searchBar.autocorrectionType = .no
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchResultsUpdater = resultsVC
+        return searchController
     }
 }
 

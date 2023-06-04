@@ -7,14 +7,16 @@ import UIKit
 extension ListViewController {
     enum ImageCell {
         struct Configuration: UIContentConfiguration, Hashable, Identifiable {
-            init(id: String, image: UIImage, state: UICellConfigurationState? = nil) {
+            init(id: String, imageURL: URL?, title: String?, state: UICellConfigurationState? = nil) {
                 self.id = id
-                self.image = image
+                self.imageURL = imageURL
+                self.title = title
                 self.state = nil
             }
             
             let id: String
-            let image: UIImage
+            let imageURL: URL?
+            let title: String?
             
             var state: UICellConfigurationState?
             
@@ -34,7 +36,7 @@ extension ListViewController {
                     configureFor(configuration: config)
                 }
             }
-            
+        
             let imageView: UIImageView = {
                 let imageView = UIImageView()
                 imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,20 +44,50 @@ extension ListViewController {
                 return imageView
             }()
             
+            let blurEffectView: UIVisualEffectView = {
+                let blurEffect = UIBlurEffect(style: .light)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+                return blurEffectView
+            }()
+            
+            let label: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.numberOfLines = 0
+                label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+                label.textAlignment = .center
+                return label
+            }()
+            
             init(configuration: Configuration) {
                 self.configuration = configuration
                 super.init(frame: .zero)
-                addSubview(imageView)
-                imageView.backgroundColor = .red
-                
+                blurEffectView.alpha = 0.5
+                imageView.backgroundColor = .white
+    
                 layer.cornerRadius = 12
                 layer.masksToBounds = true
                 
+                addSubview(imageView)
+                addSubview(blurEffectView)
+                addSubview(label)
+
                 NSLayoutConstraint.activate([
                     imageView.topAnchor.constraint(equalTo: topAnchor),
                     imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
                     imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                    imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+                    imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                    
+                    blurEffectView.topAnchor.constraint(equalTo: topAnchor),
+                    blurEffectView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                    blurEffectView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                    blurEffectView.bottomAnchor.constraint(equalTo: bottomAnchor),
+                    
+                    label.topAnchor.constraint(equalTo: topAnchor),
+                    label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+                    label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+                    label.bottomAnchor.constraint(equalTo: bottomAnchor),
                 ])
             }
             
@@ -70,7 +102,9 @@ extension ListViewController {
             }
             
             func configureFor(configuration: Configuration) {
-                imageView.image = configuration.image
+                label.text = configuration.title ?? ""
+                guard let url = configuration.imageURL else { return }
+                imageView.setImageWithURL(url)
             }
         }
     }

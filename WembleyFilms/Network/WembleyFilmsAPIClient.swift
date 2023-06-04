@@ -32,4 +32,21 @@ class WembleyFilmsAPIClient {
         let endpoint = FilmAPI.films(page: page)
         return try await fetch(from: endpoint)
     }
+    
+    func searchFilms(text: String, page: Int) async throws -> FilmAPIResponse {
+        let endpoint = FilmAPI.searchFilms(text: text, page: page)
+        return try await fetch(from: endpoint)
+    }
+    
+    func fetchDetails(filmID: String) async throws -> Film {
+        let endpoint = FilmAPI.details(filmID: filmID)
+        return try await fetch(from: endpoint)
+    }
+    
+    func setFavourite(filmID: Int, isFavourite: Bool) async throws -> MarkFavoriteResponse {
+        guard let userID = self.userID, let sessionID = self.userSessionID else { fatalError() }
+        let endpoint = FilmAPI.favorite(accountId: userID, sessionId: sessionID, mediaId: filmID, isFavourite: isFavourite)
+        return try await fetch(from: endpoint)
+        
+    }
 }

@@ -17,11 +17,15 @@ extension WembleyFilmsAPIClient {
             throw NetworkError.badRequest
         }
 
-        if let result = try? JSONDecoder().decode(T.self, from: data) {
+        do {
+            let result = try JSONDecoder().decode(T.self, from: data)
             return result
-        } else {
+        } catch let decodingError {
+            print("Decoding error: \(decodingError)")
+            print("Decoding error localized description: \(decodingError.localizedDescription)")
             throw NetworkError.decodingFailed
         }
+
     }
 }
 
