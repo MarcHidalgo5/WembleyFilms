@@ -50,9 +50,17 @@ class FilmDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
+        self.navigationItem.leftBarButtonItem = closeButton
+        
         configureCollectionView()
         configureDiffableDataSource()
         fetchData()
+    }
+    
+    @objc func didTapCloseButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: Private
@@ -132,6 +140,7 @@ class FilmDetailsViewController: UIViewController {
 
 //MARK: UICollectionViewDelegate
 
+@MainActor
 extension FilmDetailsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !isProcessingData, var isFavourite = self.viewModel.isFavourite else { return }
@@ -145,14 +154,13 @@ extension FilmDetailsViewController: UICollectionViewDelegate {
                 snapshot.reloadItems([.buttonItem])
                 isProcessingData = false
                 await diffableDataSource.apply(snapshot)
-                NotificationCenter.default.post(name: DidUpdateFavouriteNotification, object: nil)
             } catch {
                 showErrorAlert("Error setting favourite", error: error)
                 isProcessingData = false
             }
         }
+        NotificationCenter.default.post(name: DidUpdateFavouriteNotification, object: nil)
     }
-    
 }
 
 //MARK: Layout
