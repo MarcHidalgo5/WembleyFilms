@@ -26,6 +26,7 @@ class StartViewController: UIViewController {
     private let dataSource: AuthenticationDataSourceType
     private weak var delegate: StartViewControllerDelegate?
     
+    private var startButton: UIButton!
     private let logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,7 +40,7 @@ class StartViewController: UIViewController {
         view = UIView()
         view.backgroundColor = .white
         
-        let startButton: UIButton = {
+        startButton = {
             var configuration = UIButton.Configuration.filled()
             configuration.attributedTitle = AttributedString("Start", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 20, weight: .bold)]))
             configuration.baseBackgroundColor = .black
@@ -68,11 +69,14 @@ class StartViewController: UIViewController {
     override func viewDidLoad() { }
     
     private func startLogin() {
+        startButton.isUserInteractionEnabled = false
         Task { @MainActor in
             do {
                 try await dataSource.login(fromVC: self)
                 self.delegate?.didFinishLogin()
+                startButton.isUserInteractionEnabled = true
             } catch {
+                startButton.isUserInteractionEnabled = true
                 showErrorAlert("Failed to login", error: error)
             }
             
