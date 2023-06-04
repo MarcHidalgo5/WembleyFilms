@@ -7,7 +7,6 @@ import UIKit
 class BaseListViewController: UIViewController {
     
     init() {
-//        self.dataSource = Current.discoverFilmsDataSourceFactory()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,7 +35,6 @@ class BaseListViewController: UIViewController {
     private var diffableDataSource: UICollectionViewDiffableDataSource<Section, ItemID>!
     
     var viewModel: VM!
-//    let dataSource: DiscoverFilmsDataSourceType
     
     var isRequestingNextPage: Bool = false
             

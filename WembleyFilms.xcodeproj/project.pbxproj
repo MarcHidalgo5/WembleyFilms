@@ -40,11 +40,11 @@
 		1ACC4B272A2C93EC00BCA05A /* FilmDetailsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */; };
 		1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */; };
 		1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */; };
-		1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */; };
 		1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */; };
 		1ACC4B312A2CD20B00BCA05A /* BaseListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */; };
 		1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */; };
 		1ACC4B382A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */; };
+		1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,11 +81,11 @@
 		1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViews.swift; sourceTree = "<group>"; };
 		1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
-		1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteResponse.swift; sourceTree = "<group>"; };
 		1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFilmsListViewController.swift; sourceTree = "<group>"; };
 		1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViews.swift; sourceTree = "<group>"; };
 		1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsListViewController.swift; sourceTree = "<group>"; };
 		1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsDataSource.swift; sourceTree = "<group>"; };
+		1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkFavoriteResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,7 +249,7 @@
 				1ACC4AE02A2ACD6A00BCA05A /* Film.swift */,
 				1ACC4B112A2BC01F00BCA05A /* CreateSessionResponse.swift */,
 				1ACC4B152A2BC07100BCA05A /* User.swift */,
-				1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */,
+				1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */,
 				1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift in Sources */,
 				1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
@@ -406,7 +407,6 @@
 				1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */,
 				1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */,
 				1ACC4B102A2BBFB000BCA05A /* AuthAPI.swift in Sources */,
-				1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */,
 				1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4AE12A2ACD6A00BCA05A /* Film.swift in Sources */,

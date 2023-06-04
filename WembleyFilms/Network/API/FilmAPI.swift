@@ -9,7 +9,8 @@ enum FilmAPI: Endpoint {
     case searchFilms(text: String, page: Int)
     case details(filmID: String)
     case favouriteFilms(accountId: String, sessionId: String, page: Int)
-    case setFavorite(userID: String, sessionId: String, mediaId: Int, isFavourite: Bool)
+    case setFavorite(accountId: String, sessionId: String, mediaId: Int, isFavourite: Bool)
+    case isFavouriteFilm(accountId: String, sessionId: String, filmID: String)
 
     var path: String {
         switch self {
@@ -19,16 +20,18 @@ enum FilmAPI: Endpoint {
             return "search/movie"
         case .details(let filmID):
             return "movie/\(filmID)"
-        case .favouriteFilms(let userID, _, _):
-            return "account/\(userID)/favorite/movies"
-        case .setFavorite(let userID, _, _, _):
-            return "account/\(userID)/favorite"
+        case .favouriteFilms(let accountId, _, _):
+            return "account/\(accountId)/favorite/movies"
+        case .setFavorite(let accountId, _, _, _):
+            return "account/\(accountId)/favorite"
+        case .isFavouriteFilm(let accountId, _, let filmID):
+            return "account/\(accountId)/favorite/movie/\(filmID)"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .films, .searchFilms, .details, .favouriteFilms:
+        case .films, .searchFilms, .details, .favouriteFilms, .isFavouriteFilm:
             return .GET
         case .setFavorite:
             return .POST
@@ -44,7 +47,7 @@ enum FilmAPI: Endpoint {
                 "query": text,
                 "page": page
             ]
-        case .details:
+        case .details, .isFavouriteFilm:
             return [:]
         case .favouriteFilms(_, let sessionId, let page):
             return [
@@ -61,4 +64,3 @@ enum FilmAPI: Endpoint {
         }
     }
 }
-
