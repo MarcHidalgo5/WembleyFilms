@@ -73,7 +73,6 @@ class ListDataSource: ListDataSourceType {
 extension Array where Element == Film {
     var viewModel: [ListViewController.ImageCell.Configuration] {
         compactMap { element in
-            guard let title = element.title else { return nil }
             
             let urlString = element.posterPath.flatMap {
                 "https://image.tmdb.org/t/p/w200\($0)"
@@ -83,10 +82,9 @@ extension Array where Element == Film {
             return .init(
                 id: String(element.id),
                 imageURL: url,
-                title: title
+                title: element.title ?? ""
             )
         }
     }
-
 }
 

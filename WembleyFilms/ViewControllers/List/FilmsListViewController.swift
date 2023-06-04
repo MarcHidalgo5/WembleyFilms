@@ -255,8 +255,14 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
 extension ListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = FilmDetailsViewController()
-        self.show(vc, sender: nil)
+        guard let item = diffableDataSource.itemIdentifier(for: indexPath) else { return }
+        switch item {
+        case .film(let id):
+            let vc = FilmDetailsViewController(filmID: id)
+            self.show(vc, sender: nil)
+        case .emtpy:
+            break
+        }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

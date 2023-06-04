@@ -9,6 +9,7 @@ struct Film {
     let title: String?
     let posterPath: String?
     let releaseDate: String?
+    let overview: String?
 }
 
 extension Film: Decodable {
@@ -18,6 +19,7 @@ extension Film: Decodable {
         case posterPath = "poster_path"
         case title
         case releaseDate = "release_date"
+        case overview
     }
 
     init(from decoder: Decoder) throws {
@@ -26,6 +28,7 @@ extension Film: Decodable {
         posterPath = try? movieContainer.decode(String.self, forKey: .posterPath)
         title = try? movieContainer.decode(String.self, forKey: .title)
         releaseDate = try? movieContainer.decode(String.self, forKey: .releaseDate)
+        overview = try? movieContainer.decode(String.self, forKey: .overview)
     }
 }
 

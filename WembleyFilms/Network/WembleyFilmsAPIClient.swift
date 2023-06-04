@@ -37,4 +37,9 @@ class WembleyFilmsAPIClient {
         let endpoint = FilmAPI.searchFilms(text: text, page: page)
         return try await fetch(from: endpoint)
     }
+    
+    func fetchDetails(filmID: String) async throws -> Film {
+        let endpoint = FilmAPI.details(filmID: filmID)
+        return try await fetch(from: endpoint)
+    }
 }

@@ -11,6 +11,7 @@ import Foundation
 enum FilmAPI: Endpoint {
     case films(page: Int)
     case searchFilms(text: String, page: Int)
+    case details(filmID: String)
 
     var path: String {
         switch self {
@@ -18,12 +19,14 @@ enum FilmAPI: Endpoint {
             return "discover/movie"
         case .searchFilms:
             return "search/movie"
+        case .details(filmID: let filmID):
+            return "movie/\(filmID)"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .films, .searchFilms:
+        case .films, .searchFilms, .details:
             return .GET
         }
     }
@@ -34,6 +37,8 @@ enum FilmAPI: Endpoint {
             return ["page": page]
         case .searchFilms(let text, let page):
             return ["query": text, "page": page]
+        case .details:
+            return [:]
         }
     }
 }
