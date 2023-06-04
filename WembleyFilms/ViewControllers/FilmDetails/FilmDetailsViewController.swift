@@ -6,7 +6,7 @@ import UIKit
 
 class FilmDetailsViewController: UIViewController {
     
-    init(filmID: String) {
+    init(filmID: Int) {
         self.currentFilmID = filmID
         self.dataSource = Current.filmDetaisDataSourceFactory()
         super.init(nibName: nil, bundle: nil)
@@ -17,13 +17,13 @@ class FilmDetailsViewController: UIViewController {
         static let MediumSpacing: CGFloat = 12
     }
     
-    enum Section {
+    private enum Section {
         case image
         case text
         case button
     }
 
-    enum Item: Hashable {
+    private enum Item: Hashable {
         case imageItem(ImageCell.Configuration)
         case textItem(TextCell.Configuration)
         case buttonItem
@@ -36,13 +36,13 @@ class FilmDetailsViewController: UIViewController {
         let informationConfig: TextCell.Configuration
     }
         
-    var currentFilmID: String
-    var isProcessingData = false
+    private var currentFilmID: Int
+    private var isProcessingData = false
     
-    var viewModel: VM!
-    var collectionView: UICollectionView!
-    var diffableDataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    let dataSource: FilmDetailsDataSourceType!
+    private var viewModel: VM!
+    private var collectionView: UICollectionView!
+    private var diffableDataSource: UICollectionViewDiffableDataSource<Section, Item>!
+    private let dataSource: FilmDetailsDataSourceType!
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -50,9 +50,17 @@ class FilmDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(didTapCloseButton))
+        self.navigationItem.leftBarButtonItem = closeButton
+        
         configureCollectionView()
         configureDiffableDataSource()
         fetchData()
+    }
+    
+    @objc func didTapCloseButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: Private
@@ -130,6 +138,9 @@ class FilmDetailsViewController: UIViewController {
     }
 }
 
+//MARK: UICollectionViewDelegate
+
+@MainActor
 extension FilmDetailsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard !isProcessingData, var isFavourite = self.viewModel.isFavourite else { return }
@@ -143,15 +154,16 @@ extension FilmDetailsViewController: UICollectionViewDelegate {
                 snapshot.reloadItems([.buttonItem])
                 isProcessingData = false
                 await diffableDataSource.apply(snapshot)
-                NotificationCenter.default.post(name: DidUpdateFavouritesNotification, object: nil)
             } catch {
-                showErrorAlert("Error adding favourite", error: error)
+                showErrorAlert("Error setting favourite", error: error)
                 isProcessingData = false
             }
         }
+        NotificationCenter.default.post(name: DidUpdateFavouriteNotification, object: nil)
     }
-    
 }
+
+//MARK: Layout
 
 private extension FilmDetailsViewController {
     static var ImageLayout: NSCollectionLayoutSection {

@@ -4,11 +4,6 @@
 
 import Foundation
 
-// MARK: - Endpoint
-/**
- Protocol used to describe what is needed
- in order to send REST API requests.
-*/
 public protocol Endpoint {
     
     /// The path for the request

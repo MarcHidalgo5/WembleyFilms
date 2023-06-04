@@ -23,6 +23,8 @@ class DiscoverFilmsListViewController: BaseListViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Overrides
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.searchController = UISearchController.wembleyFilmsSearch()
@@ -89,12 +91,14 @@ class DiscoverFilmsListViewController: BaseListViewController {
         }
     }
     
-    override func didSelectFilm(id: String) {
+    override func didSelectFilm(id: Int) {
         let vc = FilmDetailsViewController(filmID: id)
         let navVC = UINavigationController(rootViewController: vc)
         self.present(navVC, animated: true)
     }
 }
+
+//MARK: UISearchResultsUpdating
 
 extension DiscoverFilmsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -107,6 +111,8 @@ extension DiscoverFilmsListViewController: UISearchResultsUpdating {
         debouncer.call()
     }
 }
+
+//MARK: UISearchController
 
 extension UISearchController {
     

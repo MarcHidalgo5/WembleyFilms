@@ -4,4 +4,4 @@
 
 import Foundation
 
-public let DidUpdateFavouritesNotification = Notification.Name("DidUpdateFavouritesNotification")
+public let DidUpdateFavouriteNotification = Notification.Name("DidUpdateFavouriteNotification")

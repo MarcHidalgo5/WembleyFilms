@@ -46,7 +46,18 @@
 		1ACC4B382A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */; };
 		1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */; };
 		1ACC4B3E2A2CFE5F00BCA05A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */; };
+		1ACC4B492A2D038600BCA05A /* WembleyFilmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B482A2D038600BCA05A /* WembleyFilmsTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1ACC4B4A2A2D038600BCA05A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1ACC4A8D2A28F33C00BCA05A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1ACC4A942A28F33D00BCA05A;
+			remoteInfo = WembleyFilms;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WembleyFilms.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +99,8 @@
 		1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkFavoriteResponse.swift; sourceTree = "<group>"; };
 		1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		1ACC4B462A2D038600BCA05A /* WembleyFilmsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WembleyFilmsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ACC4B482A2D038600BCA05A /* WembleyFilmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +113,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1ACC4B432A2D038600BCA05A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				1ACC4A972A28F33D00BCA05A /* WembleyFilms */,
+				1ACC4B472A2D038600BCA05A /* WembleyFilmsTests */,
 				1ACC4A962A28F33D00BCA05A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */,
+				1ACC4B462A2D038600BCA05A /* WembleyFilmsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,6 +330,14 @@
 			path = ChildVC;
 			sourceTree = "<group>";
 		};
+		1ACC4B472A2D038600BCA05A /* WembleyFilmsTests */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B482A2D038600BCA05A /* WembleyFilmsTests.swift */,
+			);
+			path = WembleyFilmsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -332,6 +362,24 @@
 			productReference = 1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1ACC4B452A2D038600BCA05A /* WembleyFilmsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ACC4B4E2A2D038600BCA05A /* Build configuration list for PBXNativeTarget "WembleyFilmsTests" */;
+			buildPhases = (
+				1ACC4B422A2D038600BCA05A /* Sources */,
+				1ACC4B432A2D038600BCA05A /* Frameworks */,
+				1ACC4B442A2D038600BCA05A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1ACC4B4B2A2D038600BCA05A /* PBXTargetDependency */,
+			);
+			name = WembleyFilmsTests;
+			productName = WembleyFilmsTests;
+			productReference = 1ACC4B462A2D038600BCA05A /* WembleyFilmsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -344,6 +392,10 @@
 				TargetAttributes = {
 					1ACC4A942A28F33D00BCA05A = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					1ACC4B452A2D038600BCA05A = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 1ACC4A942A28F33D00BCA05A;
 					};
 				};
 			};
@@ -364,6 +416,7 @@
 			projectRoot = "";
 			targets = (
 				1ACC4A942A28F33D00BCA05A /* WembleyFilms */,
+				1ACC4B452A2D038600BCA05A /* WembleyFilmsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -375,6 +428,13 @@
 			files = (
 				1ACC4AA52A28F33E00BCA05A /* LaunchScreen.storyboard in Resources */,
 				1ACC4AA22A28F33E00BCA05A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ACC4B442A2D038600BCA05A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +483,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1ACC4B422A2D038600BCA05A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ACC4B492A2D038600BCA05A /* WembleyFilmsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1ACC4B4B2A2D038600BCA05A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1ACC4A942A28F33D00BCA05A /* WembleyFilms */;
+			targetProxy = 1ACC4B4A2A2D038600BCA05A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1ACC4AA32A28F33E00BCA05A /* LaunchScreen.storyboard */ = {
@@ -605,6 +681,42 @@
 			};
 			name = Release;
 		};
+		1ACC4B4C2A2D038600BCA05A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = WembleyStudios.WembleyFilmsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WembleyFilms.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WembleyFilms";
+			};
+			name = Debug;
+		};
+		1ACC4B4D2A2D038600BCA05A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = WembleyStudios.WembleyFilmsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WembleyFilms.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WembleyFilms";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,6 +734,15 @@
 			buildConfigurations = (
 				1ACC4AAA2A28F33E00BCA05A /* Debug */,
 				1ACC4AAB2A28F33E00BCA05A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ACC4B4E2A2D038600BCA05A /* Build configuration list for PBXNativeTarget "WembleyFilmsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ACC4B4C2A2D038600BCA05A /* Debug */,
+				1ACC4B4D2A2D038600BCA05A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

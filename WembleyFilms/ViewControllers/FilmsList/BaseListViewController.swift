@@ -69,7 +69,7 @@ class BaseListViewController: UIViewController {
         fatalError("Implement handlePullToRefresh")
     }
     
-    open func didSelectFilm(id: String) {
+    open func didSelectFilm(id: Int) {
         fatalError("Implement didSelectFilm")
     }
     
@@ -193,6 +193,8 @@ class BaseListViewController: UIViewController {
         }
     }
 }
+
+//MARK: UICollectionViewDelegate
 
 extension BaseListViewController: UICollectionViewDelegate {
     
