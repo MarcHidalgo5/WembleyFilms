@@ -36,6 +36,8 @@
 		1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B182A2BDA2300BCA05A /* AuthStorage.swift */; };
 		1ACC4B1B2A2BE86400BCA05A /* FilmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1A2A2BE86400BCA05A /* FilmAPI.swift */; };
 		1ACC4B1D2A2C258000BCA05A /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */; };
+		1ACC4B222A2C2D1900BCA05A /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 1ACC4B212A2C2D1900BCA05A /* Nuke */; };
+		1ACC4B242A2C2D1900BCA05A /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 1ACC4B232A2C2D1900BCA05A /* NukeExtensions */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B222A2C2D1900BCA05A /* Nuke in Frameworks */,
+				1ACC4B242A2C2D1900BCA05A /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +292,10 @@
 			dependencies = (
 			);
 			name = WembleyFilms;
+			packageProductDependencies = (
+				1ACC4B212A2C2D1900BCA05A /* Nuke */,
+				1ACC4B232A2C2D1900BCA05A /* NukeExtensions */,
+			);
 			productName = WembleyFilms;
 			productReference = 1ACC4A952A28F33D00BCA05A /* WembleyFilms.app */;
 			productType = "com.apple.product-type.application";
@@ -316,6 +324,9 @@
 				Base,
 			);
 			mainGroup = 1ACC4A8C2A28F33C00BCA05A;
+			packageReferences = (
+				1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 1ACC4A962A28F33D00BCA05A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -576,6 +587,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1ACC4B212A2C2D1900BCA05A /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		1ACC4B232A2C2D1900BCA05A /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ACC4B202A2C2D1900BCA05A /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1ACC4A8D2A28F33C00BCA05A /* Project object */;
 }

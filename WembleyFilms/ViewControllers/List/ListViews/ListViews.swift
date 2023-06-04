@@ -7,16 +7,16 @@ import UIKit
 extension ListViewController {
     enum ImageCell {
         struct Configuration: UIContentConfiguration, Hashable, Identifiable {
-            init(id: String, image: UIImage, title: String, state: UICellConfigurationState? = nil) {
+            init(id: String, imageURL: URL?, title: String?, state: UICellConfigurationState? = nil) {
                 self.id = id
-                self.image = image
+                self.imageURL = imageURL
                 self.title = title
                 self.state = nil
             }
             
             let id: String
-            let image: UIImage
-            let title: String
+            let imageURL: URL?
+            let title: String?
             
             var state: UICellConfigurationState?
             
@@ -102,8 +102,9 @@ extension ListViewController {
             }
             
             func configureFor(configuration: Configuration) {
-                imageView.image = configuration.image
-                label.text = configuration.title
+                label.text = configuration.title ?? ""
+                guard let url = configuration.imageURL else { return }
+                imageView.setImageWithURL(url)
             }
         }
     }

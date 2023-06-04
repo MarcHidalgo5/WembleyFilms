@@ -181,7 +181,7 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor(named: "wembley-film-background-color")
         collectionView.delegate = self
         view.addSubview(collectionView)
     }
@@ -242,7 +242,7 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        var text = (searchController.searchBar.text ?? "")
+        let text = (searchController.searchBar.text ?? "")
         if text.isEmpty {
             self.currentText = nil
         } else {
@@ -250,12 +250,16 @@ class ListViewController: UIViewController, UISearchResultsUpdating {
         }
         debouncer.call()
     }
-    
 }
 
 extension ListViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = FilmDetailsViewController()
+        self.show(vc, sender: nil)
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         guard offsetY > 0, contentHeight > 0 else { return }

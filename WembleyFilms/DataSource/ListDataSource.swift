@@ -72,10 +72,21 @@ class ListDataSource: ListDataSourceType {
 
 extension Array where Element == Film {
     var viewModel: [ListViewController.ImageCell.Configuration] {
-        compactMap {
-            guard let title = $0.title else { return nil }
-            return .init(id: String($0.id), image: UIImage(systemName: "pencil")!, title: title)
+        compactMap { element in
+            guard let title = element.title else { return nil }
+            
+            let urlString = element.posterPath.flatMap {
+                "https://image.tmdb.org/t/p/w200\($0)"
+            }
+            let url = URL(string: urlString ?? "")
+            
+            return .init(
+                id: String(element.id),
+                imageURL: url,
+                title: title
+            )
         }
     }
+
 }
 
