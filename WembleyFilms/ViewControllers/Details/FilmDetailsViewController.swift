@@ -10,7 +10,6 @@ class FilmDetailsViewController: UIViewController {
         self.currentFilmID = filmID
         self.dataSource = Current.filmDetaisDataSourceFactory()
         super.init(nibName: nil, bundle: nil)
-//        self.title = currentFilm.title ?? ""
     }
     
     private enum Constants {
@@ -31,8 +30,9 @@ class FilmDetailsViewController: UIViewController {
     }
     
     struct VM {
-        let image: ImageCell.Configuration
-        let information: TextCell.Configuration
+        let title: String
+        let imageConfig: ImageCell.Configuration
+        let informationConfig: TextCell.Configuration
     }
     
     var currentFilmID: String
@@ -57,9 +57,19 @@ class FilmDetailsViewController: UIViewController {
     
     private func fetchData() {
         Task { @MainActor in
-            let a = try await self.dataSource.fetchFilmDetails(filmID: self.currentFilmID)
-            print(a)
+            let vm = try await self.dataSource.fetchFilmDetails(filmID: self.currentFilmID)
+            configureFor(viewModel: vm)
         }
+    }
+    
+    private func configureFor(viewModel: VM) {
+        self.title = viewModel.title
+        var snapshot = diffableDataSource.snapshot()
+        snapshot.appendSections([.image, .text, .button])
+        snapshot.appendItems([.imageItem(viewModel.imageConfig)], toSection: .image)
+        snapshot.appendItems([.textItem(viewModel.informationConfig)], toSection: .text)
+        snapshot.appendItems([.buttonItem(ButtonCell.Configuration())], toSection: .button)
+        diffableDataSource.apply(snapshot)
     }
     
     private func configureCollectionView() {
@@ -90,16 +100,6 @@ class FilmDetailsViewController: UIViewController {
         }
         
         setCollectionViewLayout()
-        
-        let image = UIImage(systemName: "pencil")!
-        let text = " This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text This is some text"
-        
-        var snapshot = diffableDataSource.snapshot()
-        snapshot.appendSections([.image, .text, .button])
-        snapshot.appendItems([.imageItem(ImageCell.Configuration(imageURL: nil))], toSection: .image)
-        snapshot.appendItems([.textItem(TextCell.Configuration(text: text))], toSection: .text)
-        snapshot.appendItems([.buttonItem(ButtonCell.Configuration())], toSection: .button)
-        diffableDataSource.apply(snapshot)
     }
     
     private func setCollectionViewLayout() {

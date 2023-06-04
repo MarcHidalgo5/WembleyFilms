@@ -101,7 +101,7 @@ enum TextCell {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-            label.textAlignment = .center
+            label.textAlignment = .justified
             return label
         }()
         
@@ -151,11 +151,7 @@ enum ButtonCell {
     }
     
     class View: UIView, UIContentView {
-        var configuration: UIContentConfiguration {
-            didSet {
-                // no configuration needed
-            }
-        }
+        var configuration: UIContentConfiguration
 
         init(configuration: Configuration) {
             self.configuration = configuration

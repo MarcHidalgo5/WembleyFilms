@@ -28,6 +28,6 @@ extension Film {
             "https://image.tmdb.org/t/p/w500\($0)"
         }
         let url = URL(string: urlString ?? "")
-        return .init(image: .init(imageURL: url), information: .init(text: self.overview ?? ""))
+        return .init(title: self.title ?? "", imageConfig: .init(imageURL: url), informationConfig: .init(text: self.overview ?? ""))
     }
 }
