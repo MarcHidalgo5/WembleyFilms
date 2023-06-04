@@ -4,7 +4,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, UISearchResultsUpdating {
     
     init() {
         self.dataSource = Current.listDataSourceFactory()
@@ -40,17 +40,33 @@ class ListViewController: UIViewController {
     
     private var isRequestingNextPage: Bool = false
     
+    let debouncer = Debouncer(interval: 0.5)
+        
+    var currentText: String?
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        super.loadView()
+        self.title = "Films"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.searchController = UISearchController.wembleyFilmsSearch()
         configureCollectionView()
         configurePullToRefresh()
         configureActivityIndicator()
         configureDiffableDataSource()
         fetchData()
+        debouncer.callback = { [weak self] in
+            guard let self = self else { return }
+            if let text = self.currentText, !text.isEmpty {
+                self.searchData(text: text)
+            }
+        }
     }
     
     //MARK: Private
@@ -77,9 +93,26 @@ class ListViewController: UIViewController {
         guard !isRequestingNextPage else { return }
         isRequestingNextPage = true
         Task { @MainActor in
-            let vm = try await dataSource.fetchFilmList()
-            await configureForNextPage(viewModel: vm)
-            self.isRequestingNextPage = false
+            do {
+                let vm = try await dataSource.fetchNextPage()
+                await configureForNextPage(viewModel: vm)
+                self.isRequestingNextPage = false
+            } catch {
+                self.isRequestingNextPage = false
+            }
+        }
+    }
+    
+    private func searchData(text: String) {
+        isRequestingNextPage = true
+        Task { @MainActor in
+            do {
+                let vm = try await self.dataSource.searchFilms(text: text)
+                isRequestingNextPage = false
+                await self.configureFor(viewModel: vm)
+            } catch {
+                isRequestingNextPage = false
+            }
         }
     }
     
@@ -207,13 +240,26 @@ class ListViewController: UIViewController {
             self.showErrorAlert("Fail loading films", error: error)
         }
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        var text = (searchController.searchBar.text ?? "")
+        if text.isEmpty {
+            self.currentText = nil
+        } else {
+            self.currentText = searchController.searchBar.text
+        }
+        debouncer.call()
+    }
+    
 }
 
 extension ListViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        if offsetY > contentHeight - scrollView.frame.size.height * 4 {
+        guard offsetY > 0, contentHeight > 0 else { return }
+        if offsetY > contentHeight - scrollView.frame.size.height {
             fetchNextPage()
         }
     }
@@ -244,6 +290,20 @@ private extension ListViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: Constants.MediumSpacing, bottom: Constants.MediumSpacing, trailing: Constants.MediumSpacing)
         return section
+    }
+}
+
+extension UISearchController {
+    
+    static func wembleyFilmsSearch() -> UISearchController {
+        let resultsVC = ListViewController()
+        let searchController = UISearchController(searchResultsController: resultsVC)
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = ""
+        searchController.searchBar.autocorrectionType = .no
+        searchController.searchBar.autocapitalizationType = .none
+        searchController.searchResultsUpdater = resultsVC
+        return searchController
     }
 }
 

@@ -6,9 +6,9 @@ import Foundation
 
 struct Film {
     let id: Int
-    let title: String
-    let posterPath: String
-    let releaseDate: String
+    let title: String?
+    let posterPath: String?
+    let releaseDate: String?
 }
 
 extension Film: Decodable {
@@ -23,9 +23,9 @@ extension Film: Decodable {
     init(from decoder: Decoder) throws {
         let movieContainer = try decoder.container(keyedBy: FilmCodingKeys.self)
         id = try movieContainer.decode(Int.self, forKey: .id)
-        posterPath = try movieContainer.decode(String.self, forKey: .posterPath)
-        title = try movieContainer.decode(String.self, forKey: .title)
-        releaseDate = try movieContainer.decode(String.self, forKey: .releaseDate)
+        posterPath = try? movieContainer.decode(String.self, forKey: .posterPath)
+        title = try? movieContainer.decode(String.self, forKey: .title)
+        releaseDate = try? movieContainer.decode(String.self, forKey: .releaseDate)
     }
 }
 
