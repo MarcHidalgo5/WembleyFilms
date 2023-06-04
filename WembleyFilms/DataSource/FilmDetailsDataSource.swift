@@ -38,7 +38,7 @@ class FilmDetailsDataSource: FilmDetailsDataSourceType {
 extension Film {
     var viewModel: FilmDetailsViewController.VM {
         let urlString = self.posterPath.flatMap {
-            "https://image.tmdb.org/t/p/w500\($0)"
+            "\(WembleyFilmsAPI.detailsFilmImagebaseURL)\($0)"
         }
         let url = URL(string: urlString ?? "")
         return .init(title: self.title ?? "", imageConfig: .init(imageURL: url), informationConfig: .init(text: self.overview ?? ""))

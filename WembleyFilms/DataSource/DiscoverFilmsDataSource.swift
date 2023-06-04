@@ -78,7 +78,7 @@ extension Array where Element == Film {
         compactMap { element in
             
             let urlString = element.posterPath.flatMap {
-                "https://image.tmdb.org/t/p/w200\($0)"
+                "\(WembleyFilmsAPI.discoverFilmsImagebaseURL)\($0)"
             }
             let url = URL(string: urlString ?? "")
             

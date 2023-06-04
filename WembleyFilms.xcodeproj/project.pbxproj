@@ -45,6 +45,7 @@
 		1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */; };
 		1ACC4B382A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */; };
 		1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */; };
+		1ACC4B3E2A2CFE5F00BCA05A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsListViewController.swift; sourceTree = "<group>"; };
 		1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkFavoriteResponse.swift; sourceTree = "<group>"; };
+		1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 				1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */,
 				1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */,
 				1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */,
+				1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */,
 				1ACC4B122A2BC01F00BCA05A /* CreateSessionResponse.swift in Sources */,
 				1ACC4AC92A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift in Sources */,
+				1ACC4B3E2A2CFE5F00BCA05A /* Notifications.swift in Sources */,
 				1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */,
 				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,
 				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,

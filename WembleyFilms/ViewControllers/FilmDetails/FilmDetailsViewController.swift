@@ -35,9 +35,8 @@ class FilmDetailsViewController: UIViewController {
         let imageConfig: ImageCell.Configuration
         let informationConfig: TextCell.Configuration
     }
-    
+        
     var currentFilmID: String
-    
     var isProcessingData = false
     
     var viewModel: VM!
@@ -133,16 +132,18 @@ class FilmDetailsViewController: UIViewController {
 
 extension FilmDetailsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard !isProcessingData, let isFavourite = self.viewModel.isFavourite else { return }
+        guard !isProcessingData, var isFavourite = self.viewModel.isFavourite else { return }
         isProcessingData = true
         Task { @MainActor in
             do {
+                isFavourite.toggle()
                 try await self.dataSource.setFavourite(filmID: self.currentFilmID, isFavourite: isFavourite)
-                isProcessingData = false
-                self.viewModel.isFavourite?.toggle()
+                self.viewModel.isFavourite? = isFavourite
                 var snapshot = diffableDataSource.snapshot()
                 snapshot.reloadItems([.buttonItem])
+                isProcessingData = false
                 await diffableDataSource.apply(snapshot)
+                NotificationCenter.default.post(name: DidUpdateFavouritesNotification, object: nil)
             } catch {
                 showErrorAlert("Error adding favourite", error: error)
                 isProcessingData = false

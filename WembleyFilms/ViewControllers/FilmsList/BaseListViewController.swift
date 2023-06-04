@@ -127,6 +127,20 @@ class BaseListViewController: UIViewController {
         await diffableDataSource.apply(snapshot, animatingDifferences: true)
     }
     
+    func configureForPullRequest(viewModel: VM, snapshot: inout NSDiffableDataSourceSnapshot<BaseListViewController.Section, BaseListViewController.ItemID>) {
+        self.viewModel = viewModel
+        snapshot.deleteAllItems()
+        if self.viewModel.films.isEmpty {
+            snapshot.appendSections([.empty])
+            snapshot.appendItems([.emtpy])
+        } else {
+            snapshot.appendSections([.main])
+            self.viewModel.films.forEach { film in
+                snapshot.appendItems([.film(film.id)])
+            }
+        }
+    }
+    
     func configureForNextPage(viewModel: VM) async {
         self.viewModel.films.append(contentsOf: viewModel.films)
         var snapshot = diffableDataSource.snapshot()
@@ -186,7 +200,7 @@ extension BaseListViewController: UICollectionViewDelegate {
         guard let item = diffableDataSource.itemIdentifier(for: indexPath) else { return }
         switch item {
         case .film(let id):
-            didSelectFilm(id: id)
+            self.didSelectFilm(id: id)
         case .emtpy:
             break
         }

@@ -19,6 +19,21 @@ class FavouriteFilmsListViewController: BaseListViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFavourites),
+            name: DidUpdateFavouritesNotification,
+            object: nil
+        )
+    }
+    
+    @objc func updateFavourites() {
+        self.fetchData()
+    }
+
+    
     override func fetchData() {
         guard !isRequestingNextPage else { return }
         isRequestingNextPage = true
@@ -26,7 +41,7 @@ class FavouriteFilmsListViewController: BaseListViewController {
         Task { @MainActor in
             do {
                 let vm = try await dataSource.fetchFavouriteFilms()
-                await configureFor(viewModel: vm)
+                await configureFor(viewModel: vm) 
                 stopLoading()
                 self.isRequestingNextPage = false
             } catch {
@@ -53,22 +68,16 @@ class FavouriteFilmsListViewController: BaseListViewController {
     
     override func handlePullToRefresh(snapshot: inout NSDiffableDataSourceSnapshot<BaseListViewController.Section, BaseListViewController.ItemID>) async {
         do {
-            let vm = try await dataSource.fetchFavouriteFilmsNextPage()
-            #warning("Create configureForPullRequest")
-            self.viewModel = vm
-            snapshot.deleteAllItems()
-            if self.viewModel.films.isEmpty {
-                snapshot.appendSections([.empty])
-                snapshot.appendItems([.emtpy])
-            } else {
-                snapshot.appendSections([.main])
-                self.viewModel.films.forEach { film in
-                    snapshot.appendItems([.film(film.id)])
-                }
-            }
+            let vm = try await dataSource.fetchFavouriteFilms()
+            self.configureForPullRequest(viewModel: vm, snapshot: &snapshot)
         } catch {
             self.showErrorAlert("Fail loading films", error: error)
         }
     }
     
+    override func didSelectFilm(id: String) {
+        let vc = FilmDetailsViewController(filmID: id)
+        let navVC = UINavigationController(rootViewController: vc)
+        self.present(navVC, animated: true)
+    }
 }

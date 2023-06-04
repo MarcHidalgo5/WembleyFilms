@@ -83,18 +83,7 @@ class DiscoverFilmsListViewController: BaseListViewController {
     override func handlePullToRefresh(snapshot: inout NSDiffableDataSourceSnapshot<BaseListViewController.Section, BaseListViewController.ItemID>) async {
         do {
             let vm = try await dataSource.fetchFilmList()
-            #warning("Create configureForPullRequest")
-            self.viewModel = vm
-            snapshot.deleteAllItems()
-            if self.viewModel.films.isEmpty {
-                snapshot.appendSections([.empty])
-                snapshot.appendItems([.emtpy])
-            } else {
-                snapshot.appendSections([.main])
-                self.viewModel.films.forEach { film in
-                    snapshot.appendItems([.film(film.id)])
-                }
-            }
+            self.configureForPullRequest(viewModel: vm, snapshot: &snapshot)
         } catch {
             self.showErrorAlert("Fail loading films", error: error)
         }
