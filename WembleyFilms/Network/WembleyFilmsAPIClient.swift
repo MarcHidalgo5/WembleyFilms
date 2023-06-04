@@ -43,10 +43,20 @@ class WembleyFilmsAPIClient {
         return try await fetch(from: endpoint)
     }
     
-    func setFavourite(filmID: Int, isFavourite: Bool) async throws -> MarkFavoriteResponse {
-        guard let userID = self.userID, let sessionID = self.userSessionID else { fatalError() }
-        let endpoint = FilmAPI.favorite(accountId: userID, sessionId: sessionID, mediaId: filmID, isFavourite: isFavourite)
+    func fetchFavouritesFilms(page: Int) async throws -> FilmAPIResponse {
+        guard let userID, let userSessionID else { throw APIClientError.invalidSession }
+        let endpoint = FilmAPI.favouriteFilms(accountId: userID, sessionId: userSessionID, page: page)
         return try await fetch(from: endpoint)
-        
+    }
+    
+    func setFavourite(filmID: String, isFavourite: Bool) async throws -> MarkFavoriteResponse {
+        guard let userID, let userSessionID, let filmID = Int(filmID) else { throw APIClientError.invalidSession }
+        let endpoint = FilmAPI.setFavorite(accountId: userID, sessionId: userSessionID, mediaId: filmID, isFavourite: isFavourite)
+        return try await fetch(from: endpoint)        
+    }
+    
+    enum APIClientError: Error {
+        case invalidSession
     }
 }
+

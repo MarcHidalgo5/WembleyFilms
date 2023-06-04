@@ -100,7 +100,7 @@ enum TextCell {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.numberOfLines = 0
-            label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
             label.textAlignment = .justified
             return label
         }()
@@ -141,6 +141,9 @@ enum TextCell {
 
 enum ButtonCell {
     struct Configuration: UIContentConfiguration, Hashable {
+        
+        let isFavourite: Bool
+        
         func makeContentView() -> UIView & UIContentView {
             return View(configuration: self)
         }
@@ -151,34 +154,53 @@ enum ButtonCell {
     }
     
     class View: UIView, UIContentView {
+        
+        let button: UIButton = {
+            var configuration = UIButton.Configuration.filled()
+            configuration.buttonSize = .large
+            configuration.baseBackgroundColor = .black
+            return UIButton(configuration: configuration)
+        }()
+        
+        
         var configuration: UIContentConfiguration
 
         init(configuration: Configuration) {
             self.configuration = configuration
             super.init(frame: .zero)
             
-            let button: UIButton = {
-                var configuration = UIButton.Configuration.filled()
-                configuration.attributedTitle = AttributedString("Add to favorites", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .medium)]))
-                configuration.baseBackgroundColor = .black
-                configuration.baseForegroundColor = .yellow
-                configuration.buttonSize = .large
-                return .init(configuration: configuration, primaryAction: UIAction(handler: { [weak self] _ in
-//                    self?.startLogin()
-                }))
-            }()
-            
+            button.isUserInteractionEnabled = false
             button.translatesAutoresizingMaskIntoConstraints = false
+            button.clipsToBounds = false
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowOffset = CGSize(width: 0, height: 2)
+            button.layer.shadowOpacity = 0.4
+            button.layer.shadowRadius = 2
             
             addSubview(button)
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: centerXAnchor),
                 button.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
+            
+            configureFor(configuration: configuration)
         }
         
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
+        }
+        
+        func configureFor(configuration: Configuration) {
+            button.configurationUpdateHandler = { button in
+                if configuration.isFavourite {
+                    button.configuration?.attributedTitle = AttributedString("Remove from favorites", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .medium)]))
+                    button.configuration?.baseForegroundColor = .red
+                } else {
+                    button.configuration?.attributedTitle = AttributedString("Add to favorites", attributes: AttributeContainer([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .medium)]))
+                    button.configuration?.baseForegroundColor = .yellow
+                }
+            }
+            
         }
     }
 }

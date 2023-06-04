@@ -1,10 +1,10 @@
 //
-//  Created by Marc Hidalgo on 2/6/23.
+//  Created by Marc Hidalgo on 4/6/23.
 //
 
 import UIKit
 
-extension ListViewController {
+extension BaseListViewController {
     enum ImageCell {
         struct Configuration: UIContentConfiguration, Hashable, Identifiable {
             init(id: String, imageURL: URL?, title: String?, state: UICellConfigurationState? = nil) {
@@ -156,4 +156,5 @@ extension ListViewController {
     }
 
 }
+
 

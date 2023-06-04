@@ -9,12 +9,12 @@ class TabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         let filmsList: (UIViewController, UITabBarItem) = (
-            ListViewController(),
+            DiscoverFilmsListViewController(),
             UITabBarItem(title: "Films", image: UIImage(systemName: "list.bullet"), selectedImage: UIImage(systemName: "list.bullet")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         )
         
         let favouritesFilms: (UIViewController, UITabBarItem) = (
-            UIViewController(),
+            FavouriteFilmsListViewController(),
             UITabBarItem(title: "Favourites", image: UIImage(systemName: "list.star"), selectedImage: UIImage(systemName: "list.star")?.applyingSymbolConfiguration(UIImage.SymbolConfiguration(weight: .bold)))
         )
         

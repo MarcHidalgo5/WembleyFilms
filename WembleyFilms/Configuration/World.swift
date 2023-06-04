@@ -15,15 +15,19 @@ struct World {
     var apiClient: WembleyFilmsAPIClient
     var authenticationDataSource: AuthenticationDataSource
     
-    var listDataSourceFactory: () -> ListDataSourceType
+    var discoverFilmsDataSourceFactory: () -> DiscoverFilmsDataSourceType
+    var favouriteFilmsDataSourceFactory: () -> FavouriteFilmsDataSourceType
     var filmDetaisDataSourceFactory: () -> FilmDetailsDataSourceType
     
     init() {
         self.apiClient = WembleyFilmsAPIClient()
         self.authenticationDataSource = AuthenticationDataSource(apiClient: apiClient)
         
-        self.listDataSourceFactory = {
-            ListDataSource(apiClient: Current.apiClient)
+        self.discoverFilmsDataSourceFactory = {
+            DiscoverFilmsDataSource(apiClient: Current.apiClient)
+        }
+        self.favouriteFilmsDataSourceFactory = {
+            FavouriteFilmsDataSource(apiClient: Current.apiClient)
         }
         self.filmDetaisDataSourceFactory = {
             FilmDetailsDataSource(apiClient: Current.apiClient)

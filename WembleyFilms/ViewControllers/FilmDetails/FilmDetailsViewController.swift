@@ -26,16 +26,18 @@ class FilmDetailsViewController: UIViewController {
     enum Item: Hashable {
         case imageItem(ImageCell.Configuration)
         case textItem(TextCell.Configuration)
-        case buttonItem(ButtonCell.Configuration)
+        case buttonItem
     }
     
     struct VM {
         let title: String
+        var isFavourite: Bool? = nil
         let imageConfig: ImageCell.Configuration
         let informationConfig: TextCell.Configuration
     }
-    
+        
     var currentFilmID: String
+    var isProcessingData = false
     
     var viewModel: VM!
     var collectionView: UICollectionView!
@@ -57,24 +59,30 @@ class FilmDetailsViewController: UIViewController {
     
     private func fetchData() {
         Task { @MainActor in
-            let vm = try await self.dataSource.fetchFilmDetails(filmID: self.currentFilmID)
-            configureFor(viewModel: vm)
+            do {
+                let vm = try await self.dataSource.fetchFilmDetails(filmID: self.currentFilmID)
+                configureFor(viewModel: vm)
+            } catch {
+                self.showErrorAlert("Error fetching details", error: error)
+            }
+            
         }
     }
     
     private func configureFor(viewModel: VM) {
         self.title = viewModel.title
+        self.viewModel = viewModel
         var snapshot = diffableDataSource.snapshot()
         snapshot.appendSections([.image, .text, .button])
         snapshot.appendItems([.imageItem(viewModel.imageConfig)], toSection: .image)
         snapshot.appendItems([.textItem(viewModel.informationConfig)], toSection: .text)
-        snapshot.appendItems([.buttonItem(ButtonCell.Configuration())], toSection: .button)
+        snapshot.appendItems([.buttonItem], toSection: .button)
         diffableDataSource.apply(snapshot)
     }
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.delegate = self
         view.addSubview(collectionView)
     }
     
@@ -94,8 +102,10 @@ class FilmDetailsViewController: UIViewController {
                 return collectionView.dequeueConfiguredReusableCell(using: imageCellRegistration, for: indexPath, item: config)
             case .textItem(let config):
                 return collectionView.dequeueConfiguredReusableCell(using: textCellRegistration, for: indexPath, item: config)
-            case .buttonItem(let config):
-                return collectionView.dequeueConfiguredReusableCell(using: buttonCellRegistration, for: indexPath, item: config)
+            case .buttonItem:
+                guard let isFavourite = self.viewModel.isFavourite else { fatalError() }
+                let buttonConfiguration = ButtonCell.Configuration(isFavourite: isFavourite)
+                return collectionView.dequeueConfiguredReusableCell(using: buttonCellRegistration, for: indexPath, item: buttonConfiguration)
             }
         }
         
@@ -118,6 +128,29 @@ class FilmDetailsViewController: UIViewController {
         })
         collectionView.setCollectionViewLayout(layout, animated: false)
     }
+}
+
+extension FilmDetailsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard !isProcessingData, var isFavourite = self.viewModel.isFavourite else { return }
+        isProcessingData = true
+        Task { @MainActor in
+            do {
+                isFavourite.toggle()
+                try await self.dataSource.setFavourite(filmID: self.currentFilmID, isFavourite: isFavourite)
+                self.viewModel.isFavourite? = isFavourite
+                var snapshot = diffableDataSource.snapshot()
+                snapshot.reloadItems([.buttonItem])
+                isProcessingData = false
+                await diffableDataSource.apply(snapshot)
+                NotificationCenter.default.post(name: DidUpdateFavouritesNotification, object: nil)
+            } catch {
+                showErrorAlert("Error adding favourite", error: error)
+                isProcessingData = false
+            }
+        }
+    }
+    
 }
 
 private extension FilmDetailsViewController {

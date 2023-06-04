@@ -15,9 +15,7 @@
 		1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AB52A2A290800BCA05A /* ContainerViewController.swift */; };
 		1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ABC2A2A315600BCA05A /* StartViewController.swift */; };
 		1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4ABF2A2A32E000BCA05A /* AppState.swift */; };
-		1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */; };
-		1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC52A2A593500BCA05A /* ListViews.swift */; };
-		1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */; };
+		1ACC4AC92A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AC82A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift */; };
 		1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */; };
 		1ACC4AD32A2A693500BCA05A /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD22A2A693500BCA05A /* World.swift */; };
 		1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */; };
@@ -42,7 +40,12 @@
 		1ACC4B272A2C93EC00BCA05A /* FilmDetailsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */; };
 		1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */; };
 		1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */; };
-		1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */; };
+		1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */; };
+		1ACC4B312A2CD20B00BCA05A /* BaseListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */; };
+		1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */; };
+		1ACC4B382A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */; };
+		1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */; };
+		1ACC4B3E2A2CFE5F00BCA05A /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +59,7 @@
 		1ACC4AB52A2A290800BCA05A /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		1ACC4ABC2A2A315600BCA05A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1ACC4ABF2A2A32E000BCA05A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListViewController.swift; sourceTree = "<group>"; };
-		1ACC4AC52A2A593500BCA05A /* ListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViews.swift; sourceTree = "<group>"; };
-		1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		1ACC4AC82A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFilmsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4AD02A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WembleyFilmsAPIClient.swift; sourceTree = "<group>"; };
 		1ACC4AD22A2A693500BCA05A /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		1ACC4AD62A2AB51400BCA05A /* UIViewController+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utilities.swift"; sourceTree = "<group>"; };
@@ -81,7 +82,12 @@
 		1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsViews.swift; sourceTree = "<group>"; };
 		1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailsDataSource.swift; sourceTree = "<group>"; };
 		1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
-		1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteResponse.swift; sourceTree = "<group>"; };
+		1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverFilmsListViewController.swift; sourceTree = "<group>"; };
+		1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViews.swift; sourceTree = "<group>"; };
+		1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsListViewController.swift; sourceTree = "<group>"; };
+		1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteFilmsDataSource.swift; sourceTree = "<group>"; };
+		1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkFavoriteResponse.swift; sourceTree = "<group>"; };
+		1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,9 +151,8 @@
 		1ACC4AB02A28FB9900BCA05A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4ABE2A2A318100BCA05A /* Favourite */,
-				1ACC4ABB2A2A30EA00BCA05A /* Details */,
-				1ACC4ABA2A2A30CE00BCA05A /* List */,
+				1ACC4ABB2A2A30EA00BCA05A /* FilmDetails */,
+				1ACC4ABA2A2A30CE00BCA05A /* FilmsList */,
 				1ACC4AB92A2A2FEB00BCA05A /* Start */,
 				1ACC4AB82A2A2FD900BCA05A /* TabBar */,
 				1ACC4AB72A2A2D3D00BCA05A /* Helpers */,
@@ -187,46 +192,32 @@
 			path = Start;
 			sourceTree = "<group>";
 		};
-		1ACC4ABA2A2A30CE00BCA05A /* List */ = {
+		1ACC4ABA2A2A30CE00BCA05A /* FilmsList */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4AC42A2A591E00BCA05A /* ListViews */,
-				1ACC4AC12A2A3DEE00BCA05A /* FilmsListViewController.swift */,
 				1ACC4B2A2A2CBAD300BCA05A /* BaseListViewController.swift */,
+				1ACC4B332A2CD26600BCA05A /* Views */,
+				1ACC4B342A2CD28400BCA05A /* ChildVC */,
 			);
-			path = List;
+			path = FilmsList;
 			sourceTree = "<group>";
 		};
-		1ACC4ABB2A2A30EA00BCA05A /* Details */ = {
+		1ACC4ABB2A2A30EA00BCA05A /* FilmDetails */ = {
 			isa = PBXGroup;
 			children = (
 				1ACC4B252A2C93C800BCA05A /* FilmDetailsViews */,
 				1ACC4B1E2A2C28C700BCA05A /* FilmDetailsViewController.swift */,
 			);
-			path = Details;
-			sourceTree = "<group>";
-		};
-		1ACC4ABE2A2A318100BCA05A /* Favourite */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Favourite;
-			sourceTree = "<group>";
-		};
-		1ACC4AC42A2A591E00BCA05A /* ListViews */ = {
-			isa = PBXGroup;
-			children = (
-				1ACC4AC52A2A593500BCA05A /* ListViews.swift */,
-			);
-			path = ListViews;
+			path = FilmDetails;
 			sourceTree = "<group>";
 		};
 		1ACC4AC72A2A5F3A00BCA05A /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				1ACC4AC82A2A5F4A00BCA05A /* ListDataSource.swift */,
+				1ACC4AC82A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift */,
 				1ACC4B002A2BB0BA00BCA05A /* AuthenticationDataSource.swift */,
 				1ACC4B282A2CA19700BCA05A /* FilmDetailsDataSource.swift */,
+				1ACC4B372A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -249,6 +240,7 @@
 				1ACC4ADA2A2AC33000BCA05A /* UIImageView+Download.swift */,
 				1ACC4B022A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift */,
 				1ACC4B1C2A2C258000BCA05A /* Debouncer.swift */,
+				1ACC4B3D2A2CFE5F00BCA05A /* Notifications.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,7 +252,7 @@
 				1ACC4AE02A2ACD6A00BCA05A /* Film.swift */,
 				1ACC4B112A2BC01F00BCA05A /* CreateSessionResponse.swift */,
 				1ACC4B152A2BC07100BCA05A /* User.swift */,
-				1ACC4B2C2A2CBB5D00BCA05A /* FavouriteResponse.swift */,
+				1ACC4B3B2A2CE75A00BCA05A /* MarkFavoriteResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,6 +289,23 @@
 				1ACC4B262A2C93EC00BCA05A /* FilmDetailsViews.swift */,
 			);
 			path = FilmDetailsViews;
+			sourceTree = "<group>";
+		};
+		1ACC4B332A2CD26600BCA05A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B302A2CD20B00BCA05A /* BaseListViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1ACC4B342A2CD28400BCA05A /* ChildVC */ = {
+			isa = PBXGroup;
+			children = (
+				1ACC4B2E2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift */,
+				1ACC4B352A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift */,
+			);
+			path = ChildVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,9 +385,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACC4B3C2A2CE75A00BCA05A /* MarkFavoriteResponse.swift in Sources */,
+				1ACC4B362A2CD2F200BCA05A /* FavouriteFilmsListViewController.swift in Sources */,
 				1ACC4B032A2BB24900BCA05A /* WembleyFilmsAPIClient+Extensions.swift in Sources */,
 				1ACC4A992A28F33D00BCA05A /* AppDelegate.swift in Sources */,
 				1ACC4B1D2A2C258000BCA05A /* Debouncer.swift in Sources */,
+				1ACC4B382A2CDE8300BCA05A /* FavouriteFilmsDataSource.swift in Sources */,
 				1ACC4B272A2C93EC00BCA05A /* FilmDetailsViews.swift in Sources */,
 				1ACC4B0D2A2BBCFB00BCA05A /* AuthenticationTokenResponse.swift in Sources */,
 				1ACC4B142A2BC04800BCA05A /* UserAPI.swift in Sources */,
@@ -387,18 +399,19 @@
 				1ACC4AD72A2AB51400BCA05A /* UIViewController+Utilities.swift in Sources */,
 				1ACC4B192A2BDA2300BCA05A /* AuthStorage.swift in Sources */,
 				1ACC4B122A2BC01F00BCA05A /* CreateSessionResponse.swift in Sources */,
-				1ACC4AC92A2A5F4A00BCA05A /* ListDataSource.swift in Sources */,
+				1ACC4AC92A2A5F4A00BCA05A /* DiscoverFilmsDataSource.swift in Sources */,
+				1ACC4B3E2A2CFE5F00BCA05A /* Notifications.swift in Sources */,
 				1ACC4B2B2A2CBAD300BCA05A /* BaseListViewController.swift in Sources */,
 				1ACC4AC02A2A32E000BCA05A /* AppState.swift in Sources */,
 				1ACC4AB62A2A290800BCA05A /* ContainerViewController.swift in Sources */,
 				1ACC4AB32A294D7500BCA05A /* TabBaViewController.swift in Sources */,
 				1ACC4B292A2CA19700BCA05A /* FilmDetailsDataSource.swift in Sources */,
-				1ACC4AC22A2A3DEE00BCA05A /* FilmsListViewController.swift in Sources */,
 				1ACC4AD32A2A693500BCA05A /* World.swift in Sources */,
+				1ACC4B312A2CD20B00BCA05A /* BaseListViews.swift in Sources */,
 				1ACC4B0B2A2BB77A00BCA05A /* WembleyFilmsAPI.swift in Sources */,
 				1ACC4B062A2BB32F00BCA05A /* Endpoint.swift in Sources */,
 				1ACC4B102A2BBFB000BCA05A /* AuthAPI.swift in Sources */,
-				1ACC4B2D2A2CBB5D00BCA05A /* FavouriteResponse.swift in Sources */,
+				1ACC4B2F2A2CCDD500BCA05A /* DiscoverFilmsListViewController.swift in Sources */,
 				1ACC4AD12A2A68BC00BCA05A /* WembleyFilmsAPIClient.swift in Sources */,
 				1ACC4AE12A2ACD6A00BCA05A /* Film.swift in Sources */,
 				1ACC4ABD2A2A315600BCA05A /* StartViewController.swift in Sources */,
@@ -407,7 +420,6 @@
 				1ACC4B162A2BC07100BCA05A /* User.swift in Sources */,
 				1ACC4AD92A2ABFAA00BCA05A /* NSAttributedString.swift in Sources */,
 				1ACC4ADB2A2AC33000BCA05A /* UIImageView+Download.swift in Sources */,
-				1ACC4AC62A2A593500BCA05A /* ListViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
